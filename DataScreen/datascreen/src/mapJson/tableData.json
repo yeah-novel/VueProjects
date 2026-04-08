@@ -1,0 +1,25 @@
+{
+  "tableData": [
+    {"ID":"1", "name":"张三", "money":400,"address":"北京市", "state":"1", "date":"2025-04-20"},
+    {"ID":"2", "name":"李四", "money":400,"address":"北京市", "state":"1", "date":"2025-04-20"},
+    {"ID":"3", "name":"王五", "money":400,"address":"北京市", "state":"1", "date":"2025-04-20"},
+    {"ID":"4", "name":"李华", "money":400,"address":"北京市", "state":"1", "date":"2025-04-20"},
+    {"ID":"5", "name":"王五", "money":400,"address":"北京市", "state":"1", "date":"2025-04-20"},
+    {"ID":"6", "name":"王五", "money":400,"address":"北京市", "state":"1", "date":"2025-04-20"},
+    {"ID":"7", "name":"王五", "money":400,"address":"北京市", "state":"1", "date":"2025-04-20"},
+    {"ID":"8", "name":"王五", "money":400,"address":"北京市", "state":"1", "date":"2025-04-20"},
+    {"ID":"9", "name":"王五", "money":400,"address":"北京市", "state":"1", "date":"2025-04-20"},
+    {"ID":"10", "name":"王五", "money":400,"address":"北京市", "state":"1", "date":"2025-04-20"}
+  ],
+  "rankData": [
+      { "id": 1, "name": "项目A", "value": 950 },
+      { "id": 2, "name": "项目B", "value": 870 },
+      { "id": 3, "name": "项目C", "value": 670 },
+      { "id": 4, "name": "项目D", "value": 800 },
+      { "id": 5, "name": "项目E", "value": 570 },
+      { "id": 6, "name": "项目F", "value": 890 },
+      { "id": 7, "name": "项目G", "value": 970 },
+      { "id": 8, "name": "项目F", "value": 470 }
+    ]
+}
+
