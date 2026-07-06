@@ -574,7 +574,7 @@ const SCREEN_PIE_OPTION = {
     animationDelay: function (idx) {
       return idx * 180
     },
-    radius: ['0%', '65%'],
+    radius: ['0%', '55%'],
     center: ['38%', '50%'],
     roseType: false,
     itemStyle: {
@@ -600,10 +600,64 @@ const SCREEN_PIE_OPTION = {
       }
     },
     data: [
-      { value: 59, name: "It's Your Style!", selected: true, selectedOffset: 12 },
-      { value: 25, name: 'Professional!' },
-      { value: 10, name: 'Cloud System!' },
-      { value: 9, name: 'Consulting!' }
+      { value: 11, name: 'S级' },
+      { value: 12, name: 'A级' },
+      { value: 35, name: 'B级' },
+      { value: 32, name: 'C级' },
+      { value: 10, name: 'D级' }
+    ]
+  }]
+}
+
+const SCREEN_RADAR_OPTION = {
+  ...SCREEN_ANIMATION,
+  radar: {
+    center: ['50%', '52%'],
+    radius: '58%',
+    startAngle: 90,
+    splitNumber: 5,
+    shape: 'polygon',
+    axisLine: { lineStyle: { color: 'rgba(255,255,255,0.12)' } },
+    splitLine: { lineStyle: { color: 'rgba(255,255,255,0.12)' } },
+    splitArea: {
+      areaStyle: {
+        color: ['rgba(12,34,85,0.05)', 'transparent']
+      }
+    },
+    indicator: [
+      { name: '注意力', max: 180 },
+      { name: '自控力', max: 120 },
+      { name: '记忆力', max: 120 },
+      { name: '反应力', max: 180 },
+      { name: '思维力', max: 180 }
+    ],
+    axisName: { color: '#fff', fontSize: 12 }
+  },
+  tooltip: { show: false },
+  series: [{
+    type: 'radar',
+    areaStyle: {
+      color: {
+        type: 'linear',
+        x: 0,
+        y: 0,
+        x2: 0,
+        y2: 1,
+        colorStops: [
+          { offset: 0, color: 'rgba(57, 171, 255, 0.45)' },
+          { offset: 1, color: 'rgba(93, 255, 232, 0.18)' }
+        ]
+      }
+    },
+    lineStyle: { color: '#4bd3ff', width: 2 },
+    symbol: 'circle',
+    symbolSize: 6,
+    itemStyle: { color: '#4bd3ff' },
+    data: [
+      {
+        value: [128, 59, 64, 154, 158],
+        name: '学习力雷达'
+      }
     ]
   }]
 }
@@ -702,6 +756,82 @@ const SCREEN_LINE_OPTION = {
   ]
 }
 
+const SCREEN_AREA_STACK_OPTION = {
+  ...SCREEN_ANIMATION,
+  animationDuration: 2000,
+  animationEasing: 'cubicOut',
+  grid: {
+    left: '6%',
+    right: '6%',
+    top: '12%',
+    bottom: '18%',
+    containLabel: true
+  },
+  legend: {
+    bottom: '6%',
+    left: 'center',
+    textStyle: { color: 'rgba(255,255,255,0.85)', fontSize: 12 },
+    itemGap: 20
+  },
+  xAxis: {
+    type: 'category',
+    boundaryGap: false,
+    data: ['01','02','03','04','05','06','07','08','09','10','11','12'],
+    axisLine: { lineStyle: { color: 'rgba(255,255,255,0.12)' } },
+    axisTick: { show: false },
+    axisLabel: { color: 'rgba(255,255,255,0.6)', fontSize: 10 },
+    splitLine: { show: false }
+  },
+  yAxis: {
+    type: 'value',
+    axisLine: { show: false },
+    axisTick: { show: false },
+    axisLabel: { color: 'rgba(255,255,255,0.6)', fontSize: 10 },
+    splitLine: { lineStyle: { color: 'rgba(255,255,255,0.06)' } }
+  },
+  tooltip: { trigger: 'axis' },
+  series: [
+    {
+      name: 'Product A',
+      type: 'line',
+      smooth: true,
+      showSymbol: false,
+      areaStyle: {
+        color: {
+          type: 'linear',
+          x: 0,
+          y: 0,
+          x2: 0,
+          y2: 1,
+          colorStops: [ { offset: 0, color: 'rgba(71,130,255,0.9)' }, { offset: 1, color: 'rgba(71,130,255,0.06)' } ]
+        }
+      },
+      lineStyle: { color: '#477FFF', width: 2 },
+      itemStyle: { color: '#477FFF' },
+      data: [2.8, 3.4, 3.0, 3.8, 4.2, 3.6, 4.1, 3.7, 4.4, 3.9, 4.6, 4.0]
+    },
+    {
+      name: 'Product B',
+      type: 'line',
+      smooth: true,
+      showSymbol: false,
+      areaStyle: {
+        color: {
+          type: 'linear',
+          x: 0,
+          y: 0,
+          x2: 0,
+          y2: 1,
+          colorStops: [ { offset: 0, color: 'rgba(249,151,151,0.9)' }, { offset: 1, color: 'rgba(249,151,151,0.06)' } ]
+        }
+      },
+      lineStyle: { color: '#F99797', width: 2 },
+      itemStyle: { color: '#F99797' },
+      data: [1.6, 2.1, 1.9, 2.6, 2.9, 2.4, 3.0, 2.7, 3.2, 2.8, 3.4, 3.0]
+    }
+  ]
+}
+
 export {
   BAROPTION,
   MAPOPTION,
@@ -711,5 +841,7 @@ export {
   SAFETY_RING_OPTION,
   SCREEN_BAR_OPTION,
   SCREEN_PIE_OPTION,
-  SCREEN_LINE_OPTION
+  SCREEN_LINE_OPTION,
+  SCREEN_RADAR_OPTION,
+  SCREEN_AREA_STACK_OPTION
 }
