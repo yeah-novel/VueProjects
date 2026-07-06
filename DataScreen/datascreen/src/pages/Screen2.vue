@@ -1,271 +1,295 @@
 <template>
+  <div class="dashboard">
+    <div class="dashboard-grid">
+      <!-- 左上：仪表盘 + 指标 -->
+      <div class="panel">
+        <div class="panel-header">
+          <div class="title">Focus on the right stuff</div>
+          <div class="subtitle">
+            Explore only what you need and don't waste time on the unneccesary stuff.
+          </div>
+        </div>
+        <div class="gauge-row">
+          <div class="inner-card">
+            <div class="inner-label">Solar Module</div>
+            <div class="chart-box">
+              <map-echart echarts-type="semiGauge" height="150px" />
+            </div>
+          </div>
+          <div class="inner-card inner-card--metrics">
+            <div class="inner-label">Solar Module</div>
+            <div class="metrics-row">
+              <div class="metrics-info">
+                <div class="metric-box">
+                  <span class="metric-label">Invited</span>
+                  <span class="metric-value">145 people</span>
+                </div>
+                <div class="metric-box">
+                  <span class="metric-label">Bonus</span>
+                  <span class="metric-value">1,465</span>
+                </div>
+              </div>
+              <div class="safety-ring">
+                <map-echart echarts-type="safetyRing" width="120px" height="130px" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-  <div class="data-container">
-    <!-- 数据面板 -->
-    <div class="left">
-      <div class="card">
-        <div class="title">
-          Focus on the right stuff
-        </div>
-        <div class="subtitle">
-          Explore only what you need and don’t
-waste time on the unneccesary stuff.
-        </div>
-        <map-echart echarts-type="bar" height="250px" />
-      </div>
-      <!--  -->
-      <div class="card ">
-        <div class="title">
-          See whose doing what
-        </div>
-        <div class="subtitle">
-          Get everyone on the same page all of the time
-        </div>
-        <map-echart echarts-type="radar" height="250px" />
-      </div>
-    </div>
-    <div class="middle">
-      <!-- 地图 -->
-      <div class="map-chart">
-        <map-echart region="china" class="map-box"/>
-      </div>
-      <!--  -->
-      <div class="grid" >
-        <div class="grid-content grid-con-1 card">
-          <img class="grid-con-icon" src="@/assets/icon/icon_usernum.svg" alt="">
-          <div class="grid-cont-right">
-            <div class="grid-num">1234</div>
-            <div>用户访问量</div>
+      <!-- 右上：柱状图 + 侧边栏 -->
+      <div class="panel">
+        <div class="panel-header">
+          <div class="title">Increase togetherness</div>
+          <div class="subtitle">
+            Get everyone on the same page all of the time
           </div>
         </div>
-        <div class="grid-content grid-con-2 card">
-          <img class="grid-con-icon" src="@/assets/icon/icon_rank.svg" alt="">
-          <div class="grid-cont-right">
-            <div class="grid-num">NO.02</div>
-            <div>排名</div>
+        <div class="bar-section">
+          <div class="section-sidebar">
+            <div
+              v-for="(section, index) in sections"
+              :key="index"
+              :class="['section-btn', { active: activeSection === index }]"
+              @click="activeSection = index"
+            >
+              <span class="section-icon">{{ section.icon }}</span>
+              <span class="section-text">{{ section.label }}</span>
+            </div>
           </div>
-        </div>
-        <div class="grid-content grid-con-3 card">
-          <img class="grid-con-icon" src="@/assets/icon/icon_data.svg" alt="">
-          <div class="grid-cont-right">
-            <div class="grid-num">1234</div>
-            <div>系统消息</div>
+          <div class="chart-box chart-box--bar">
+            <map-echart echarts-type="screenBar" height="220px" />
           </div>
         </div>
       </div>
-    </div>
-    <div class="right">
-      <div class="card right-top">
-        <div class="user-info">
-          <img src="@/assets/icon/icon_avatar.png" class="user-avator" alt />
-          <div class="user-info-cont">
-            <div class="user-info-name">用户名</div>
-          </div>
-        </div>
-        <div class="user-info-list">
-          上次登录时间：
-          <span>2025-11-01</span>
-        </div>
-        <div class="user-info-list">
-          上次登录地点：
-          <span>浙江</span>
-        </div>
-      </div>
-      <rank-card :table-list="tableList"
-        :item-height="40"
-        :interval="1500"
-        :visible-num="5"
-        class="card"/>
-      <div class="card right-bottom">
-        <div class="title">
-          城市气温
-        </div>
-        <map-echart echarts-type="gauge" height="160px" />
-      </div>
-    </div>
 
+      <!-- 左下：饼图 -->
+      <div class="panel">
+        <div class="panel-header">
+          <div class="title">Increase togetherness</div>
+          <div class="subtitle">
+            Get everyone on the same page all of the time
+          </div>
+        </div>
+        <div class="chart-box chart-box--pie">
+          <map-echart echarts-type="screenPie" height="240px" />
+        </div>
+      </div>
+
+      <!-- 右下：折线图 -->
+      <div class="panel">
+        <div class="panel-header">
+          <div class="title">Increase togetherness</div>
+          <div class="subtitle">
+            Get everyone on the same page all of the time
+          </div>
+        </div>
+        <div class="chart-box chart-box--line">
+          <map-echart echarts-type="screenLine" height="240px" />
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
-<style>
-.title {
-  color:  rgba(240, 240, 240, 1);
-  font-family: Inter;
-  font-size: 16px;
-  font-weight: 700;
-  line-height: 19px;
-  letter-spacing: 0%;
-  text-align: left;
-  /* padding: 10px 0px 0px 10px; */
-}
-
-.subtitle {
-  color:  rgb(219, 213, 213);
-  font-family: IBM Plex Sans;
-  font-size: 12px;
-  font-weight: 400;
-  line-height: 19px;
-  letter-spacing: 1%;
-  text-align: left;
-  /* padding: 10px 0px 0px 10px; */
-}
-
-.data-container {
-  background: linear-gradient(#0056b1, #248fd8);
-  position: flex;
-  display: flex;
-  /* padding: 0px 10px 10px 10px; */
-  height: 100%;
-  width: 100%;
-}
-
-.left {
-  width: 280px;
-  /* background:rgb(147, 144, 238); */
-  padding: 20px 10px 20px 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.right{
-  width:250px;
-  padding: 20px 20px 20px 10px;
-  /* background:lightgreen; */
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.middle {
-  flex: 1;
-  /* background:rgb(238, 219, 144); */
-  padding: 20px 10px 20px 10px;
-  display: flex;
-  flex-direction: column;
-}
-
-.map-box {
-  height: 100%;
-  flex: 1;
-  /* background: rgb(238, 196, 144); */
-}
-
-.map-chart{
-  height: 100%;
-}
-
-.card {
-  border-width: 1px;
-  border-color:  rgba(25,25,112,0.4);
-  background-color: rgba(25,25,112,0.2);
-  box-shadow: 0 2px 12px 0 rgba(18, 45, 136, 0.7);
-  padding: 10px;
-  border-radius: 5px;
-  justify-content: center;
-  align-items: center;
-  /* margin-top: 10px; */
-}
-
-.grid {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  margin-bottom: 10px;
-  height: 150px;
-  /* background: rgb(238, 144, 156); */
-  /* justify-content: center; */
-}
-
-.grid-content {
-  display: flex;
-  align-items: center;
-  height: 80px;
-  background: rgba(7, 43, 119, 0.2);
-  width: 28%;
-  border-radius: 5px;
-  overflow: hidden;
-}
-
-.grid-cont-right {
-  flex: 1;
-  text-align: center;
-  font-size: 14px;
-  color: #fff;
-}
-
-.grid-num {
-  font-size: 30px;
-  font-weight: bold;
-}
-
-.grid-con-icon {
-  width: 40px;
-  height: 40px;
-  text-align: center;
-  line-height: 40px;
-  margin-left: 20px;
-}
-
-.grid-num {
-  color: #fff;
-}
-
-.user-info {
-  display: flex;
-  align-items: center;
-  padding-bottom: 10px;
-  border-bottom: 2px solid #ffffff;
-  margin-bottom: 20px;
-}
-.user-avator {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-}
-
-.user-info-cont {
-  padding-left: 20px;
-  flex: 1;
-  font-size: 28px;
-  color: #ffffff;
-}
-
-.user-info-list {
-  font-size: 14px;
-  color: #f4e6e6;
-  line-height: 25px;
-}
-.user-info-list span {
-  margin-left: 20px;
-}
-
-</style>
-
 <script>
-import rankCard from '../components/RankCardWithScroll.vue'
 import mapEchart from '../components/Echart/MapEchart.vue'
 
 export default {
   name: 'Screen2',
+  components: { mapEchart },
   data () {
     return {
-      tableList: [ ]
+      activeSection: 0,
+      sections: [
+        { icon: '👍', label: 'SECTION 1' },
+        { icon: '▦', label: 'SECTION 2' },
+        { icon: '◎', label: 'SECTION 3' }
+      ]
     }
-  },
-  components: {rankCard, mapEchart},
-  watch: {
-
-  },
-  methods: {
-    fetchData () {
-      const data = require('../mapJson/tableData.json')
-      console.log(data)
-      return data
-    }
-  },
-  mounted () {
-    this.tableList = this.fetchData()['rankData']
   }
 }
 </script>
+
+<style scoped>
+.dashboard {
+  width: 100%;
+  height: 100%;
+  background: #4a8fd4;
+  padding: 20px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 16px;
+  height: 100%;
+}
+
+.panel {
+  background: rgba(42, 90, 160, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(10, 40, 100, 0.25);
+}
+
+.panel-header {
+  margin-bottom: 12px;
+  flex-shrink: 0;
+}
+
+.title {
+  color: #fff;
+  font-family: Inter, 'PingFang SC', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.subtitle {
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 11px;
+  line-height: 1.5;
+  margin-top: 4px;
+}
+
+.gauge-row {
+  display: flex;
+  gap: 12px;
+  flex: 1;
+  min-height: 0;
+}
+
+.inner-card {
+  flex: 1;
+  background: #1a3a6b;
+  border-radius: 10px;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.inner-label {
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 10px;
+  margin-bottom: 4px;
+}
+
+.metrics-row {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  gap: 8px;
+}
+
+.metrics-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.metric-box {
+  background: rgba(10, 30, 70, 0.6);
+  border-radius: 6px;
+  padding: 8px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.metric-label {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 10px;
+}
+
+.metric-value {
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.safety-ring {
+  flex-shrink: 0;
+}
+
+.chart-box {
+  flex: 1;
+  background: #1a3a6b;
+  border-radius: 10px;
+  padding: 4px;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.inner-card .chart-box {
+  background: transparent;
+  padding: 0;
+}
+
+.bar-section {
+  display: flex;
+  gap: 12px;
+  flex: 1;
+  min-height: 0;
+}
+
+.section-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex-shrink: 0;
+  width: 90px;
+}
+
+.section-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 10px 6px;
+  background: rgba(26, 58, 107, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.section-btn.active {
+  background: rgba(77, 208, 225, 0.2);
+  border-color: rgba(77, 208, 225, 0.4);
+}
+
+.section-icon {
+  font-size: 16px;
+  line-height: 1;
+}
+
+.section-text {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 9px;
+  letter-spacing: 0.5px;
+}
+
+.section-btn.active .section-text {
+  color: #fff;
+}
+
+.chart-box--bar {
+  flex: 1;
+}
+
+.chart-box--pie,
+.chart-box--line {
+  flex: 1;
+}
+</style>

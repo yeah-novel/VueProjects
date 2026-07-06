@@ -8,6 +8,10 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
+      path: '/',
+      redirect: '/screen2'
+    },
+    {
       path: '/screen1',
       name: 'Screen1',
       component: Screen1

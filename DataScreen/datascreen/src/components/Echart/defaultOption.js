@@ -352,4 +352,364 @@ const GAUGEOPTIO = {
   ]
 }
 
-export {BAROPTION, MAPOPTION, RADAROPTION, GAUGEOPTIO}
+const SCREEN_ANIMATION = {
+  animation: true,
+  animationDuration: 1800,
+  animationEasing: 'cubicOut',
+  animationDurationUpdate: 1200,
+  animationEasingUpdate: 'cubicInOut'
+}
+
+const SEMI_GAUGE_OPTION = {
+  ...SCREEN_ANIMATION,
+  animationDuration: 2200,
+  series: [{
+    type: 'gauge',
+    center: ['50%', '75%'],
+    radius: '90%',
+    startAngle: 180,
+    endAngle: 0,
+    min: 0,
+    max: 100,
+    splitNumber: 1,
+    itemStyle: { color: '#4dd0e1' },
+    progress: {
+      show: true,
+      width: 14,
+      itemStyle: {
+        color: {
+          type: 'linear',
+          x: 0,
+          y: 0,
+          x2: 1,
+          y2: 0,
+          colorStops: [
+            { offset: 0, color: '#1e5a9e' },
+            { offset: 1, color: '#4dd0e1' }
+          ]
+        }
+      }
+    },
+    pointer: { show: false },
+    axisLine: {
+      lineStyle: {
+        width: 14,
+        color: [[1, 'rgba(30, 80, 160, 0.35)']]
+      }
+    },
+    axisTick: { show: false },
+    splitLine: { show: false },
+    axisLabel: {
+      distance: -22,
+      color: 'rgba(255,255,255,0.6)',
+      fontSize: 11,
+      formatter: function (val) {
+        if (val === 0) return '0%'
+        if (val === 100) return '100%'
+        return ''
+      }
+    },
+    title: { show: false },
+    detail: {
+      valueAnimation: true,
+      offsetCenter: [0, '-5%'],
+      fontSize: 22,
+      fontWeight: 'bold',
+      color: '#fff',
+      formatter: '{value}%\nwhat you need'
+    },
+    data: [{ value: 86 }]
+  }]
+}
+
+const SAFETY_RING_OPTION = {
+  ...SCREEN_ANIMATION,
+  animationDuration: 2000,
+  series: [{
+    type: 'gauge',
+    center: ['50%', '55%'],
+    radius: '85%',
+    startAngle: 225,
+    endAngle: -45,
+    min: 0,
+    max: 10,
+    splitNumber: 0,
+    itemStyle: { color: '#4dd0e1' },
+    progress: {
+      show: true,
+      width: 10,
+      roundCap: true,
+      itemStyle: { color: '#4dd0e1' }
+    },
+    pointer: { show: false },
+    axisLine: {
+      roundCap: true,
+      lineStyle: {
+        width: 10,
+        color: [[1, 'rgba(30, 80, 160, 0.4)']]
+      }
+    },
+    axisTick: { show: false },
+    splitLine: { show: false },
+    axisLabel: { show: false },
+    title: {
+      show: true,
+      offsetCenter: [0, '30%'],
+      fontSize: 11,
+      color: 'rgba(255,255,255,0.7)',
+      fontWeight: 'normal'
+    },
+    detail: {
+      valueAnimation: true,
+      offsetCenter: [0, '-5%'],
+      fontSize: 26,
+      fontWeight: 'bold',
+      color: '#fff',
+      formatter: '{value}'
+    },
+    data: [{ value: 9.3, name: 'Safety\nTotal Score' }]
+  }]
+}
+
+const SCREEN_BAR_OPTION = {
+  ...SCREEN_ANIMATION,
+  animationDuration: 1600,
+  animationEasing: 'elasticOut',
+  grid: {
+    left: '8%',
+    right: '4%',
+    top: '18%',
+    bottom: '12%',
+    containLabel: false
+  },
+  xAxis: {
+    type: 'category',
+    data: ['2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022'],
+    axisLine: { show: false },
+    axisTick: { show: false },
+    axisLabel: {
+      color: 'rgba(255,255,255,0.7)',
+      fontSize: 11
+    }
+  },
+  yAxis: {
+    type: 'value',
+    show: false,
+    max: 110
+  },
+  series: [{
+    type: 'bar',
+    animationDelay: function (idx) {
+      return idx * 120
+    },
+    data: [
+      { value: 20, itemStyle: { color: '#8fa8c8' } },
+      { value: 10, itemStyle: { color: '#6eb5e0' } },
+      { value: 45, itemStyle: { color: '#8fa8c8' } },
+      { value: 75, itemStyle: { color: '#6eb5e0' } },
+      { value: 100, itemStyle: { color: '#8fa8c8' } },
+      { value: 55, itemStyle: { color: '#6eb5e0' } },
+      { value: 85, itemStyle: { color: '#8fa8c8' } },
+      { value: 40, itemStyle: { color: '#6eb5e0' } }
+    ],
+    barWidth: '42%',
+    itemStyle: { borderRadius: [6, 6, 0, 0] },
+    emphasis: {
+      itemStyle: {
+        shadowBlur: 14,
+        shadowColor: 'rgba(77, 208, 225, 0.55)'
+      }
+    },
+    label: {
+      show: true,
+      position: 'top',
+      color: '#fff',
+      fontSize: 11,
+      formatter: '{c}%'
+    },
+    markLine: {
+      silent: true,
+      symbol: ['none', 'none'],
+      lineStyle: {
+        type: 'dotted',
+        color: 'rgba(255,255,255,0.35)',
+        width: 1
+      },
+      data: [{ yAxis: 0 }],
+      label: { show: false }
+    }
+  }]
+}
+
+const SCREEN_PIE_OPTION = {
+  ...SCREEN_ANIMATION,
+  animationDuration: 1400,
+  animationEasing: 'cubicOut',
+  color: ['#6eb5e0', '#f5a623', '#9b7fd4', '#5cb87a'],
+  legend: {
+    orient: 'vertical',
+    right: '5%',
+    top: 'center',
+    itemWidth: 8,
+    itemHeight: 8,
+    itemGap: 14,
+    textStyle: {
+      color: 'rgba(255,255,255,0.85)',
+      fontSize: 12
+    },
+    formatter: function (name) {
+      const map = {
+        "It's Your Style!": "It's Your Style!",
+        'Professional!': 'Professional!',
+        'Cloud System!': 'Cloud System!',
+        'Consulting!': 'Consulting!'
+      }
+      return map[name] || name
+    }
+  },
+  series: [{
+    type: 'pie',
+    animationType: 'scale',
+    animationEasing: 'elasticOut',
+    animationDelay: function (idx) {
+      return idx * 180
+    },
+    radius: ['0%', '65%'],
+    center: ['38%', '50%'],
+    roseType: false,
+    itemStyle: {
+      borderRadius: 4,
+      borderColor: 'rgba(26, 58, 107, 0.8)',
+      borderWidth: 2
+    },
+    label: {
+      show: true,
+      position: 'inside',
+      color: '#fff',
+      fontSize: 12,
+      fontWeight: 'bold',
+      formatter: '{d}%'
+    },
+    labelLine: { show: false },
+    emphasis: {
+      scale: true,
+      scaleSize: 10,
+      itemStyle: {
+        shadowBlur: 12,
+        shadowColor: 'rgba(0, 0, 0, 0.35)'
+      }
+    },
+    data: [
+      { value: 59, name: "It's Your Style!", selected: true, selectedOffset: 12 },
+      { value: 25, name: 'Professional!' },
+      { value: 10, name: 'Cloud System!' },
+      { value: 9, name: 'Consulting!' }
+    ]
+  }]
+}
+
+const SCREEN_LINE_OPTION = {
+  ...SCREEN_ANIMATION,
+  animationDuration: 2200,
+  animationEasing: 'cubicInOut',
+  grid: {
+    left: '6%',
+    right: '4%',
+    top: '12%',
+    bottom: '18%',
+    containLabel: true
+  },
+  legend: {
+    bottom: '2%',
+    left: 'center',
+    itemWidth: 20,
+    itemHeight: 2,
+    textStyle: { color: 'rgba(255,255,255,0.8)', fontSize: 11 },
+    data: ['S1', 'S2']
+  },
+  xAxis: {
+    type: 'category',
+    boundaryGap: false,
+    data: ['Q1', 'Q2', 'Q3', 'Q4', 'Q5', 'Q6', 'Q7', 'Q8', 'Q9', 'Q10', 'Q11', 'Q12'],
+    axisLine: { lineStyle: { color: 'rgba(255,255,255,0.2)' } },
+    axisTick: { show: false },
+    axisLabel: { color: 'rgba(255,255,255,0.6)', fontSize: 10 }
+  },
+  yAxis: {
+    type: 'value',
+    min: 0,
+    max: 6,
+    splitNumber: 6,
+    axisLine: { show: false },
+    axisTick: { show: false },
+    axisLabel: { color: 'rgba(255,255,255,0.5)', fontSize: 10 },
+    splitLine: { lineStyle: { color: 'rgba(255,255,255,0.08)' } }
+  },
+  series: [
+    {
+      name: 'S1',
+      type: 'line',
+      smooth: true,
+      animationDelay: 0,
+      symbol: 'circle',
+      symbolSize: 6,
+      showSymbol: false,
+      lineStyle: { color: 'rgba(255,255,255,0.85)', width: 2 },
+      itemStyle: { color: '#fff' },
+      emphasis: {
+        focus: 'series',
+        lineStyle: { width: 3 },
+        itemStyle: { borderWidth: 2, borderColor: '#fff' }
+      },
+      data: [2.5, 3.2, 2.8, 3.5, 4.0, 3.8, 4.5, 3.2, 4.8, 3.5, 4.2, 3.0]
+    },
+    {
+      name: 'S2',
+      type: 'line',
+      smooth: true,
+      animationDelay: 400,
+      symbol: 'circle',
+      symbolSize: 6,
+      showSymbol: false,
+      lineStyle: { color: '#4dd0e1', width: 2 },
+      itemStyle: { color: '#4dd0e1' },
+      emphasis: {
+        focus: 'series',
+        lineStyle: { width: 3 }
+      },
+      data: [1.8, 2.5, 3.0, 1.5, 2.8, 5.2, 4.0, 3.5, 4.5, 3.8, 2.5, 3.2],
+      markPoint: {
+        symbol: 'roundRect',
+        symbolSize: [50, 28],
+        symbolOffset: [0, -20],
+        animation: true,
+        animationDuration: 800,
+        animationDelay: 2000,
+        animationEasing: 'elasticOut',
+        itemStyle: { color: '#4dd0e1', borderRadius: 6 },
+        label: {
+          color: '#0a2a5e',
+          fontSize: 11,
+          fontWeight: 'bold',
+          formatter: '{c}%'
+        },
+        data: [
+          { name: 'dip', coord: ['Q4', 1.5], value: '21%' },
+          { name: 'peak', coord: ['Q6', 5.2], value: '54%', itemStyle: { color: '#1a6b8a' }, label: { color: '#fff' } }
+        ]
+      }
+    }
+  ]
+}
+
+export {
+  BAROPTION,
+  MAPOPTION,
+  RADAROPTION,
+  GAUGEOPTIO,
+  SEMI_GAUGE_OPTION,
+  SAFETY_RING_OPTION,
+  SCREEN_BAR_OPTION,
+  SCREEN_PIE_OPTION,
+  SCREEN_LINE_OPTION
+}
