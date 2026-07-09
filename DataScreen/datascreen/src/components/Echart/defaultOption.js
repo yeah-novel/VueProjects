@@ -1487,6 +1487,401 @@ const SCREEN_HORIZ_STACK_BAR = {
   ]
 }
 
+const SCREEN_SCATTER_OPTION = {
+  ...SCREEN_ANIMATION,
+  animationDuration: 2000,
+  animationEasing: 'cubicOut',
+  grid: {
+    left: '8%',
+    right: '6%',
+    top: '15%',
+    bottom: '22%',
+    containLabel: true
+  },
+  legend: {
+    bottom: '3%',
+    left: 'center',
+    itemWidth: 10,
+    itemHeight: 10,
+    textStyle: { color: 'rgba(255,255,255,0.8)', fontSize: 11 },
+    itemGap: 24
+  },
+  xAxis: {
+    type: 'category',
+    data: ['W1', 'W5', 'W9', 'W13', 'W17', 'W21', 'W25', 'W29', 'W33', 'W37', 'W41', 'W45', 'W49'],
+    axisLine: { lineStyle: { color: 'rgba(255,255,255,0.15)' } },
+    axisTick: { show: false },
+    axisLabel: {
+      color: 'rgba(255,255,255,0.55)',
+      fontSize: 10,
+      interval: 0
+    },
+    splitLine: { show: false }
+  },
+  yAxis: {
+    type: 'value',
+    min: 10,
+    max: 100,
+    splitNumber: 9,
+    axisLine: { show: false },
+    axisTick: { show: false },
+    axisLabel: {
+      color: 'rgba(255,255,255,0.5)',
+      fontSize: 10
+    },
+    splitLine: {
+      lineStyle: { color: 'rgba(255,255,255,0.08)', type: 'dotted' }
+    }
+  },
+  tooltip: {
+    trigger: 'item',
+    backgroundColor: 'rgba(10,30,60,0.9)',
+    borderColor: 'rgba(79,195,247,0.3)',
+    textStyle: { color: '#fff', fontSize: 12 },
+    formatter: function (params) {
+      return '<b>' + params.seriesName + '</b><br/>' +
+        params.name + ': ' + params.value
+    }
+  },
+  series: [
+    {
+      name: 'Product 1',
+      type: 'scatter',
+      symbol: 'circle',
+      symbolSize: 10,
+      itemStyle: { color: '#ab47bc' },
+      emphasis: {
+        itemStyle: {
+          shadowBlur: 10,
+          shadowColor: 'rgba(171,71,188,0.6)',
+          borderColor: '#fff',
+          borderWidth: 1.5
+        }
+      },
+      data: [45, 62, 38, 75, 50, 82, 55, 68, 42, 90, 60, 48, 72]
+    },
+    {
+      name: 'Product 2',
+      type: 'scatter',
+      symbol: 'circle',
+      symbolSize: 10,
+      itemStyle: { color: '#26c6da' },
+      emphasis: {
+        itemStyle: {
+          shadowBlur: 10,
+          shadowColor: 'rgba(38,198,218,0.6)',
+          borderColor: '#fff',
+          borderWidth: 1.5
+        }
+      },
+      data: [30, 55, 70, 42, 65, 35, 78, 52, 88, 40, 73, 58, 45]
+    },
+    {
+      name: 'Product 3',
+      type: 'scatter',
+      symbol: 'circle',
+      symbolSize: 10,
+      itemStyle: { color: '#80deea' },
+      emphasis: {
+        itemStyle: {
+          shadowBlur: 10,
+          shadowColor: 'rgba(128,222,234,0.6)',
+          borderColor: '#fff',
+          borderWidth: 1.5
+        }
+      },
+      data: [68, 28, 52, 85, 38, 72, 45, 60, 25, 78, 50, 82, 35]
+    }
+  ]
+}
+
+// ============================================================
+//  学校大屏 - 能力评价分布 (Bar)
+// ============================================================
+const SCHOOL_BAR_OPTION = {
+  ...SCREEN_ANIMATION,
+  animationDuration: 1600,
+  animationEasing: 'cubicOut',
+  grid: {
+    left: '12%',
+    right: '6%',
+    top: '14%',
+    bottom: '14%',
+    containLabel: true
+  },
+  xAxis: {
+    type: 'category',
+    data: ['优秀', '良好', '中等', '及格', '待提高'],
+    axisLine: { lineStyle: { color: 'rgba(255,255,255,0.15)' } },
+    axisTick: { show: false },
+    axisLabel: {
+      color: 'rgba(255,255,255,0.7)',
+      fontSize: 11,
+      fontWeight: 'bold'
+    },
+    splitLine: { show: false }
+  },
+  yAxis: {
+    type: 'value',
+    show: false,
+    max: 120
+  },
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: { type: 'shadow' },
+    backgroundColor: 'rgba(10,30,60,0.9)',
+    borderColor: 'rgba(56,142,255,0.3)',
+    textStyle: { color: '#fff', fontSize: 12 }
+  },
+  series: [{
+    type: 'bar',
+    barWidth: '40%',
+    animationDelay: function (idx) { return idx * 120 },
+    itemStyle: {
+      borderRadius: [4, 4, 0, 0],
+      color: {
+        type: 'linear',
+        x: 0, y: 0, x2: 0, y2: 1,
+        colorStops: [
+          { offset: 0, color: '#4fc3f7' },
+          { offset: 1, color: '#0288d1' }
+        ]
+      }
+    },
+    emphasis: {
+      itemStyle: {
+        shadowBlur: 10,
+        shadowColor: 'rgba(79,195,247,0.5)'
+      }
+    },
+    label: {
+      show: true,
+      position: 'top',
+      color: '#4fc3f7',
+      fontSize: 12,
+      fontWeight: 'bold',
+      formatter: '{c}人'
+    },
+    data: [
+      { value: 85, itemStyle: { color: { type: 'linear', x: 0, y: 0, x2: 0, y2: 1, colorStops: [{ offset: 0, color: '#66bb6a' }, { offset: 1, color: '#2e7d32' }] } } },
+      { value: 68, itemStyle: { color: { type: 'linear', x: 0, y: 0, x2: 0, y2: 1, colorStops: [{ offset: 0, color: '#4fc3f7' }, { offset: 1, color: '#0288d1' }] } } },
+      { value: 52, itemStyle: { color: { type: 'linear', x: 0, y: 0, x2: 0, y2: 1, colorStops: [{ offset: 0, color: '#ffb74d' }, { offset: 1, color: '#f57c00' }] } } },
+      { value: 38, itemStyle: { color: { type: 'linear', x: 0, y: 0, x2: 0, y2: 1, colorStops: [{ offset: 0, color: '#ff8a65' }, { offset: 1, color: '#d84315' }] } } },
+      { value: 22, itemStyle: { color: { type: 'linear', x: 0, y: 0, x2: 0, y2: 1, colorStops: [{ offset: 0, color: '#ef5350' }, { offset: 1, color: '#b71c1c' }] } } }
+    ]
+  }]
+}
+
+// ============================================================
+//  学校大屏 - 综合学习力雷达图
+// ============================================================
+const SCHOOL_RADAR_OPTION = {
+  ...SCREEN_ANIMATION,
+  animationDuration: 2000,
+  animationEasing: 'cubicOut',
+  radar: {
+    center: ['50%', '52%'],
+    radius: '60%',
+    startAngle: 90,
+    splitNumber: 5,
+    shape: 'polygon',
+    axisLine: { lineStyle: { color: 'rgba(79,195,247,0.2)' } },
+    splitLine: { lineStyle: { color: 'rgba(79,195,247,0.15)' } },
+    splitArea: {
+      areaStyle: {
+        color: ['rgba(79,195,247,0.05)', 'rgba(79,195,247,0.02)']
+      }
+    },
+    indicator: [
+      { name: '思维力\n158 ↑15', max: 200 },
+      { name: '注意力\n128 ↑38', max: 200 },
+      { name: '自控力\n59', max: 200 },
+      { name: '记忆力\n64', max: 200 },
+      { name: '反应力\n154 ↑33', max: 200 }
+    ],
+    axisName: {
+      color: '#fff',
+      fontSize: 11,
+      fontWeight: 'bold',
+      padding: [0, 0]
+    }
+  },
+  tooltip: { show: false },
+  series: [{
+    type: 'radar',
+    areaStyle: {
+      color: {
+        type: 'linear',
+        x: 0, y: 0, x2: 0, y2: 1,
+        colorStops: [
+          { offset: 0, color: 'rgba(79,195,247,0.45)' },
+          { offset: 1, color: 'rgba(79,195,247,0.08)' }
+        ]
+      }
+    },
+    lineStyle: { color: '#4fc3f7', width: 2 },
+    symbol: 'circle',
+    symbolSize: 6,
+    itemStyle: { color: '#4fc3f7' },
+    data: [
+      {
+        value: [158, 128, 59, 64, 154],
+        name: '综合学习力'
+      }
+    ]
+  }]
+}
+
+// ============================================================
+//  学校大屏 - 注意力等级人数分布 (Pie)
+// ============================================================
+const SCHOOL_PIE_OPTION = {
+  ...SCREEN_ANIMATION,
+  animationDuration: 1400,
+  animationEasing: 'cubicOut',
+  color: ['#4fc3f7', '#66bb6a', '#ffb74d', '#ef5350', '#ab47bc'],
+  legend: {
+    orient: 'vertical',
+    right: '8%',
+    top: 'center',
+    itemWidth: 10,
+    itemHeight: 10,
+    itemGap: 14,
+    textStyle: {
+      color: 'rgba(255,255,255,0.85)',
+      fontSize: 12
+    },
+    formatter: function (name) {
+      const valueMap = { 'S级': 11, 'A级': 12, 'B级': 35, 'C级': 32, 'D级': 10 }
+      return name + '  ' + (valueMap[name] || '') + '人'
+    }
+  },
+  series: [{
+    type: 'pie',
+    animationType: 'scale',
+    animationEasing: 'elasticOut',
+    animationDelay: function (idx) { return idx * 150 },
+    radius: ['35%', '60%'],
+    center: ['35%', '50%'],
+    roseType: true,
+    itemStyle: {
+      borderRadius: 4,
+      borderColor: 'rgba(10,24,54,0.8)',
+      borderWidth: 2
+    },
+    label: {
+      show: true,
+      position: 'inside',
+      color: '#fff',
+      fontSize: 13,
+      fontWeight: 'bold',
+      formatter: function (params) {
+        if (params.percent > 10) return params.name + '\n' + params.percent.toFixed(0) + '%'
+        return ''
+      }
+    },
+    labelLine: { show: false },
+    emphasis: {
+      scale: true,
+      scaleSize: 8,
+      itemStyle: {
+        shadowBlur: 12,
+        shadowColor: 'rgba(0,0,0,0.35)'
+      }
+    },
+    data: [
+      { value: 11, name: 'S级' },
+      { value: 12, name: 'A级' },
+      { value: 35, name: 'B级' },
+      { value: 32, name: 'C级' },
+      { value: 10, name: 'D级' }
+    ]
+  }]
+}
+
+// ============================================================
+//  学校大屏 - 注意力指数数据度量 (Line)
+// ============================================================
+const SCHOOL_LINE_OPTION = {
+  ...SCREEN_ANIMATION,
+  animationDuration: 2200,
+  animationEasing: 'cubicInOut',
+  grid: {
+    left: '6%',
+    right: '6%',
+    top: '16%',
+    bottom: '16%',
+    containLabel: true
+  },
+  xAxis: {
+    type: 'category',
+    boundaryGap: false,
+    data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+    axisLine: { lineStyle: { color: 'rgba(255,255,255,0.12)' } },
+    axisTick: { show: false },
+    axisLabel: { color: 'rgba(255,255,255,0.55)', fontSize: 10 }
+  },
+  yAxis: {
+    type: 'value',
+    min: 80,
+    max: 160,
+    splitNumber: 4,
+    axisLine: { show: false },
+    axisTick: { show: false },
+    axisLabel: { color: 'rgba(255,255,255,0.5)', fontSize: 10 },
+    splitLine: { lineStyle: { color: 'rgba(255,255,255,0.06)' } }
+  },
+  tooltip: {
+    trigger: 'axis',
+    backgroundColor: 'rgba(10,30,60,0.9)',
+    borderColor: 'rgba(79,195,247,0.3)',
+    textStyle: { color: '#fff', fontSize: 12 }
+  },
+  series: [{
+    name: '注意力指数',
+    type: 'line',
+    smooth: true,
+    animationDelay: 0,
+    symbol: 'circle',
+    symbolSize: 6,
+    showSymbol: true,
+    lineStyle: { color: '#4fc3f7', width: 2.5 },
+    itemStyle: { color: '#4fc3f7' },
+    areaStyle: {
+      color: {
+        type: 'linear',
+        x: 0, y: 0, x2: 0, y2: 1,
+        colorStops: [
+          { offset: 0, color: 'rgba(79,195,247,0.35)' },
+          { offset: 1, color: 'rgba(79,195,247,0.02)' }
+        ]
+      }
+    },
+    emphasis: {
+      focus: 'series',
+      lineStyle: { width: 3.5 }
+    },
+    markLine: {
+      silent: true,
+      symbol: ['none', 'none'],
+      lineStyle: {
+        type: 'dashed',
+        color: '#ffb74d',
+        width: 1.5
+      },
+      label: {
+        color: '#ffb74d',
+        fontSize: 11,
+        fontWeight: 'bold',
+        formatter: '平均分: {c}',
+        position: 'insideEndTop'
+      },
+      data: [{ yAxis: 125 }]
+    },
+    data: [118, 122, 115, 130, 128, 135, 132, 140, 125, 138, 142, 136]
+  }]
+}
+
 export {
   BAROPTION,
   MAPOPTION,
@@ -1501,5 +1896,10 @@ export {
   SCREEN_RADAR_OPTION,
   SCREEN_AREA_STACK_OPTION,
   SCREEN_MIX_BAR_LINE,
-  SCREEN_HORIZ_STACK_BAR
+  SCREEN_HORIZ_STACK_BAR,
+  SCREEN_SCATTER_OPTION,
+  SCHOOL_BAR_OPTION,
+  SCHOOL_RADAR_OPTION,
+  SCHOOL_PIE_OPTION,
+  SCHOOL_LINE_OPTION
 }

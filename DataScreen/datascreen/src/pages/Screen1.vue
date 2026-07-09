@@ -13,6 +13,12 @@ waste time on the unneccesary stuff.
         </div>
         <map-echart echarts-type="bar" height="250px" />
       </div>
+      <div class="card right-bottom">
+        <div class="title">
+          城市气温
+        </div>
+        <map-echart echarts-type="gauge" height="160px" />
+      </div>
       <!--  -->
       <div class="card ">
         <div class="title">
@@ -76,12 +82,7 @@ waste time on the unneccesary stuff.
         :interval="1500"
         :visible-num="5"
         class="card"/>
-      <div class="card right-bottom">
-        <div class="title">
-          城市气温
-        </div>
-        <map-echart echarts-type="gauge" height="160px" />
-      </div>
+      
     </div>
 
   </div>
@@ -121,38 +122,38 @@ waste time on the unneccesary stuff.
 
 .left {
   width: 280px;
-  /* background:rgb(147, 144, 238); */
   padding: 20px 10px 20px 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  min-height: 0;
 }
 
 .right{
-  width:250px;
+  width: 250px;
   padding: 20px 20px 20px 10px;
-  /* background:lightgreen; */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  min-height: 0;
 }
 
 .middle {
   flex: 1;
-  /* background:rgb(238, 219, 144); */
   padding: 20px 10px 20px 10px;
   display: flex;
   flex-direction: column;
+  min-height: 0;
 }
 
 .map-box {
   height: 100%;
   flex: 1;
-  /* background: rgb(238, 196, 144); */
 }
 
-.map-chart{
-  height: 100%;
+.map-chart {
+  flex: 1;
+  min-height: 0;
 }
 
 .card {

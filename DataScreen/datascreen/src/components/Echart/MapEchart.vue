@@ -1,6 +1,6 @@
 <!-- components/EchartsMap.vue -->
 <template>
-  <div ref="chartDom" :style="{'width':width, 'height': height}"></div>
+  <div ref="chartDom" :style="{'width': width || '100%', 'height': height || '100%'}"></div>
 </template>
 
 <script>
@@ -21,11 +21,16 @@ import {
   , SCREEN_AREA_STACK_OPTION
   , SCREEN_MIX_BAR_LINE
   , SCREEN_HORIZ_STACK_BAR
+  , SCREEN_SCATTER_OPTION
+  , SCHOOL_BAR_OPTION
+  , SCHOOL_RADAR_OPTION
+  , SCHOOL_PIE_OPTION
+  , SCHOOL_LINE_OPTION
 } from './defaultOption'
 import echarts from '../../plugins/echarts'
 
 const GAUGE_TYPES = ['semiGauge', 'safetyRing']
-const SCREEN_CHART_TYPES = ['semiGauge', 'safetyRing', 'screenBar', 'screenPie', 'screenLine', 'screenArea', 'screenMixBarLine', 'screenHorizStackBar']
+const SCREEN_CHART_TYPES = ['semiGauge', 'safetyRing', 'screenBar', 'screenPie', 'screenLine', 'screenArea', 'screenMixBarLine', 'screenHorizStackBar', 'screenScatter', 'schoolBar', 'schoolRadar', 'schoolPie', 'schoolLine']
 const REPLAY_INTERVAL = 10000
 
 export default {
@@ -44,6 +49,7 @@ export default {
     let chartInstance = null
     let savedOption = null
     let replayTimer = null
+    let resizeObserver = null
 
     const getBaseOption = () => {
       if (props.echartsType === 'map') {
@@ -76,6 +82,16 @@ export default {
         return SCREEN_MIX_BAR_LINE
       } else if (props.echartsType === 'screenHorizStackBar') {
         return SCREEN_HORIZ_STACK_BAR
+      } else if (props.echartsType === 'screenScatter') {
+        return SCREEN_SCATTER_OPTION
+      } else if (props.echartsType === 'schoolBar') {
+        return SCHOOL_BAR_OPTION
+      } else if (props.echartsType === 'schoolRadar') {
+        return SCHOOL_RADAR_OPTION
+      } else if (props.echartsType === 'schoolPie') {
+        return SCHOOL_PIE_OPTION
+      } else if (props.echartsType === 'schoolLine') {
+        return SCHOOL_LINE_OPTION
       }
       return null
     }
@@ -126,11 +142,20 @@ export default {
     onMounted(() => {
       initChart()
       startReplayLoop()
+      // 使用 ResizeObserver 监听容器尺寸变化
+      if (window.ResizeObserver) {
+        resizeObserver = new ResizeObserver(() => resizeChart())
+        resizeObserver.observe(chartDom.value)
+      }
       window.addEventListener('resize', resizeChart)
     })
 
     onBeforeUnmount(() => {
       window.removeEventListener('resize', resizeChart)
+      if (resizeObserver) {
+        resizeObserver.disconnect()
+        resizeObserver = null
+      }
       if (replayTimer) clearInterval(replayTimer)
       if (chartInstance) {
         chartInstance.dispose()
