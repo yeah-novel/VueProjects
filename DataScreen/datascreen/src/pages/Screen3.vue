@@ -29,7 +29,7 @@
           </div>
         </div>
 
-        <div class="panel-section course-overview">
+        <div class="panel-section">
           <div class="section-title">课程概况</div>
           <div class="progress-row" v-for="item in courseItems" :key="item.label">
             <div class="progress-info">
@@ -73,7 +73,7 @@
           </div>
           <div class="small-chart">
             <div class="small-chart-title">注意力等级人数分布</div>
-            <map-echart echarts-type="screenPie" height="240px" width="440px" />
+            <map-echart echarts-type="screenPie3D" height="240px" width="440px" />
           </div>
         </div>
         <div class="center-bottom-charts">

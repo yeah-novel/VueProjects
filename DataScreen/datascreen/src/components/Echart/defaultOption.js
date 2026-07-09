@@ -1,3 +1,4 @@
+import echarts from '../../plugins/echarts'
 const BAROPTION = {
   title: {
     textStyle: { // 标题文本样式
@@ -756,6 +757,285 @@ const SCREEN_LINE_OPTION = {
   ]
 }
 
+// const SCREEN_PIE_OPTION_2 = {
+//   ...SCREEN_ANIMATION,
+//   animationDuration: 1400,
+//   animationEasing: 'cubicOut',
+//   color: ['#1F8BFF', '#26D7D0', '#F5A623', '#8B6DF5', '#32D176', '#FF5F5F'],
+//   tooltip: {
+//     trigger: 'item',
+//     formatter: '{b}<br/>{c} ({d}%)',
+//     backgroundColor: 'rgba(0, 0, 0, 0.75)',
+//     textStyle: {
+//       color: '#fff',
+//       fontSize: 12
+//     }
+//   },
+//   legend: {
+//     show: false
+//   },
+//   series: [{
+//     type: 'pie',
+//     animationType: 'scale',
+//     animationEasing: 'elasticOut',
+//     animationDelay: function (idx) {
+//       return idx * 180
+//     },
+//     radius: ['45%', '65%'],
+//     center: ['50%', '48%'],
+//     avoidLabelOverlap: false,
+//     hoverOffset: 12,
+//     itemStyle: {
+//       borderRadius: 8,
+//       borderColor: 'rgba(10, 24, 54, 0.85)',
+//       borderWidth: 2,
+//       shadowBlur: 18,
+//       shadowColor: 'rgba(0, 0, 0, 0.35)'
+//     },
+//     label: {
+//       show: true,
+//       position: 'outside',
+//       color: '#fff',
+//       fontSize: 12,
+//       lineHeight: 18,
+//       formatter: '{b}\n{d}%'
+//     },
+//     labelLine: {
+//       show: true,
+//       length: 18,
+//       length2: 8,
+//       lineStyle: {
+//         color: 'rgba(255,255,255,0.55)',
+//         width: 1
+//       }
+//     },
+//     emphasis: {
+//       scale: true,
+//       scaleSize: 14,
+//       itemStyle: {
+//         shadowBlur: 18,
+//         shadowColor: 'rgba(0, 0, 0, 0.45)'
+//       }
+//     },
+//     data: [
+//       { value: 20, name: 'S级' },
+//       { value: 28, name: 'A级' },
+//       { value: 18, name: 'B级' },
+//       { value: 15, name: 'C级' },
+//       { value: 12, name: 'D级' },
+//       { value: 7, name: 'E级' }
+//     ]
+//   }]
+// }
+
+// ---------- 3D 饼图配置 ----------
+const SCREEN_PIE_OPTION_2 = {
+  backgroundColor: 'transparent',
+  tooltip: {
+    trigger: 'item',
+    formatter: '{b}: {c} ({d}%)',
+    backgroundColor: 'rgba(30,30,50,0.9)',
+    borderColor: '#4fc3f7',
+    textStyle: { color: '#fff' }
+  },
+  legend: {
+    orient: 'vertical',
+    right: 20,
+    top: 'center',
+    textStyle: { color: '#ccc', fontSize: 13 },
+    itemWidth: 14,
+    itemHeight: 14,
+    data: ['产品 A', '产品 B', '产品 C', '产品 D', '产品 E', '产品 F']
+  },
+  series: [
+    // ===== 底层：厚度阴影层（向左下偏移） =====
+    {
+      name: '厚度层',
+      type: 'pie',
+      z: 1,
+      radius: ['30%', '70%'],
+      center: ['48%', '52%'],
+      label: { show: false },
+      labelLine: { show: false },
+      silent: true,
+      animation: false,
+      avoidLabelOverlap: false,
+      data: [
+        { name: 'S级', value: 335, itemStyle: { color: '#1F8BFF' } },
+        { name: 'A级', value: 310, itemStyle: { color: '#26D7D0' } },
+        { name: 'B级', value: 234, itemStyle: { color: '#F5A623' } },
+        { name: 'C级', value: 135, itemStyle: { color: '#8B6DF5' } },
+        { name: 'D级', value: 548, itemStyle: { color: '#32D176' } },
+        { name: 'E级', value: 148, itemStyle: { color: '#FF5F5F' } }
+      ]
+    },
+    // ===== 上层：主饼图（带径向渐变高光） =====
+    {
+      name: '主饼图',
+      type: 'pie',
+      z: 2,
+      radius: ['30%', '70%'],
+      center: ['50%', '50%'],
+      label: {
+        show: true,
+        position: 'outer',
+        formatter: '{b}\n{d}%',
+        color: '#eee',
+        fontSize: 12,
+        fontWeight: '500',
+        textShadowColor: 'rgba(0,0,0,0.6)',
+        textShadowBlur: 4
+      },
+      labelLine: {
+        show: true,
+        length: 12,
+        length2: 18,
+        lineStyle: { color: '#666', width: 1.5 }
+      },
+      emphasis: {
+        scale: true,
+        scaleSize: 8,
+        label: { fontWeight: 'bold', fontSize: 14, color: '#fff' },
+        itemStyle: {
+          shadowBlur: 20,
+          shadowColor: 'rgba(255,255,255,0.4)',
+          borderWidth: 2,
+          borderColor: '#fff'
+        }
+      },
+      avoidLabelOverlap: true,
+      animationDuration: 1200,
+      animationEasing: 'cubicOut',
+      hoverAnimation: true,
+      data: [
+        {
+          name: 'A级',
+          value: 335,
+          itemStyle: {
+            color: new echarts.graphic.RadialGradient(0.3, 0.3, 0.7, [
+              { offset: 0, color: '#fff' },
+              { offset: 0.3, color: '#2196f3' },
+              { offset: 0.8, color: '#0d47a1' },
+              { offset: 1, color: '#002171' }
+            ]),
+            borderColor: 'rgba(255,255,255,0.15)',
+            borderWidth: 1,
+            shadowBlur: 12,
+            shadowColor: 'rgba(0,0,0,0.5)',
+            shadowOffsetX: 2,
+            shadowOffsetY: 4
+          }
+        },
+        {
+          name: 'B级',
+          value: 310,
+          itemStyle: {
+            color: new echarts.graphic.RadialGradient(0.3, 0.3, 0.7, [
+              { offset: 0, color: '#fff' },
+              { offset: 0.3, color: '#00bcd4' },
+              { offset: 0.8, color: '#006064' },
+              { offset: 1, color: '#00363a' }
+            ]),
+            borderColor: 'rgba(255,255,255,0.15)',
+            borderWidth: 1,
+            shadowBlur: 12,
+            shadowColor: 'rgba(0,0,0,0.5)',
+            shadowOffsetX: 2,
+            shadowOffsetY: 4
+          }
+        },
+        {
+          name: 'C级',
+          value: 234,
+          itemStyle: {
+            color: new echarts.graphic.RadialGradient(0.3, 0.3, 0.7, [
+              { offset: 0, color: '#fff' },
+              { offset: 0.3, color: '#e7b853' },
+              { offset: 0.8, color: '#d6a315' },
+              { offset: 1, color: '#6e540d' }
+            ]),
+            borderColor: 'rgba(255,255,255,0.15)',
+            borderWidth: 1,
+            shadowBlur: 12,
+            shadowColor: 'rgba(0,0,0,0.5)',
+            shadowOffsetX: 2,
+            shadowOffsetY: 4
+          }
+        },
+        {
+          name: 'D级',
+          value: 135,
+          itemStyle: {
+            color: new echarts.graphic.RadialGradient(0.3, 0.3, 0.7, [
+              { offset: 0, color: '#fff' },
+              { offset: 0.3, color: '#9c27b0' },
+              { offset: 0.8, color: '#4a148c' },
+              { offset: 1, color: '#12005e' }
+            ]),
+            borderColor: 'rgba(255,255,255,0.15)',
+            borderWidth: 1,
+            shadowBlur: 12,
+            shadowColor: 'rgba(0,0,0,0.5)',
+            shadowOffsetX: 2,
+            shadowOffsetY: 4
+          }
+        },
+        {
+          name: 'E级',
+          value: 548,
+          itemStyle: {
+            color: new echarts.graphic.RadialGradient(0.3, 0.3, 0.7, [
+              { offset: 0, color: '#fff' },
+              { offset: 0.3, color: '#4caf50' },
+              { offset: 0.8, color: '#1b5e20' },
+              { offset: 1, color: '#003300' }
+            ]),
+            borderColor: 'rgba(255,255,255,0.15)',
+            borderWidth: 1,
+            shadowBlur: 12,
+            shadowColor: 'rgba(0,0,0,0.5)',
+            shadowOffsetX: 2,
+            shadowOffsetY: 4
+          }
+        },
+        {
+          name: 'F级',
+          value: 148,
+          itemStyle: {
+            color: new echarts.graphic.RadialGradient(0.3, 0.3, 0.7, [
+              { offset: 0, color: '#fff' },
+              { offset: 0.3, color: '#ff9800' },
+              { offset: 0.8, color: '#e65100' },
+              { offset: 1, color: '#bf3600' }
+            ]),
+            borderColor: 'rgba(255,255,255,0.15)',
+            borderWidth: 1,
+            shadowBlur: 12,
+            shadowColor: 'rgba(0,0,0,0.5)',
+            shadowOffsetX: 2,
+            shadowOffsetY: 4
+          }
+        }
+      ]
+    }
+  ],
+  // 中心装饰光效
+  graphic: [
+    {
+      type: 'circle',
+      shape: { cx: '50%', cy: '50%', r: 12 },
+      style: {
+        fill: 'rgba(255,255,255,0.2)',
+        shadowBlur: 40,
+        shadowColor: 'rgba(255,255,255,0.5)'
+      },
+      z: 100,
+      left: '48.5%',
+      top: '47.5%'
+    }
+  ]
+}
+
 const SCREEN_AREA_STACK_OPTION = {
   ...SCREEN_ANIMATION,
   animationDuration: 2000,
@@ -776,7 +1056,7 @@ const SCREEN_AREA_STACK_OPTION = {
   xAxis: {
     type: 'category',
     boundaryGap: false,
-    data: ['01','02','03','04','05','06','07','08','09','10','11','12'],
+    data: ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'],
     axisLine: { lineStyle: { color: 'rgba(255,255,255,0.12)' } },
     axisTick: { show: false },
     axisLabel: { color: 'rgba(255,255,255,0.6)', fontSize: 10 },
@@ -832,6 +1112,381 @@ const SCREEN_AREA_STACK_OPTION = {
   ]
 }
 
+const SCREEN_MIX_BAR_LINE = {
+  ...SCREEN_ANIMATION,
+  animationDuration: 1800,
+  animationEasing: 'cubicOut',
+  grid: {
+    left: '8%',
+    right: '6%',
+    top: '18%',
+    bottom: '14%',
+    containLabel: true
+  },
+  legend: {
+    top: '4%',
+    left: 'center',
+    itemWidth: 16,
+    itemHeight: 8,
+    textStyle: { color: 'rgba(255,255,255,0.85)', fontSize: 11 },
+    itemGap: 16,
+    data: [
+      { name: '新增项目', icon: 'roundRect' },
+      { name: '储备项目', icon: 'roundRect' },
+      { name: '转化率', icon: 'circle' }
+    ]
+  },
+  xAxis: {
+    type: 'category',
+    data: ['Q1', 'Q2', 'Q3', 'Q4', 'Q5'],
+    axisLine: { lineStyle: { color: 'rgba(255,255,255,0.15)' } },
+    axisTick: { show: false },
+    axisLabel: {
+      color: 'rgba(255,255,255,0.7)',
+      fontSize: 11,
+      fontWeight: 'bold'
+    },
+    splitLine: { show: false }
+  },
+  yAxis: [
+    {
+      type: 'value',
+      name: '',
+      min: 0,
+      max: 50,
+      splitNumber: 5,
+      axisLine: { show: false },
+      axisTick: { show: false },
+      axisLabel: {
+        color: 'rgba(255,255,255,0.5)',
+        fontSize: 10,
+        formatter: '{value}'
+      },
+      splitLine: {
+        lineStyle: { color: 'rgba(255,255,255,0.06)', type: 'dashed' }
+      }
+    }
+  ],
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: { type: 'shadow' },
+    backgroundColor: 'rgba(10,30,60,0.9)',
+    borderColor: 'rgba(79,195,247,0.3)',
+    textStyle: { color: '#fff', fontSize: 12 }
+  },
+  series: [
+    {
+      name: '新增项目',
+      type: 'bar',
+      barWidth: '22%',
+      barGap: '15%',
+      animationDelay: function (idx) { return idx * 120 },
+      itemStyle: {
+        borderRadius: [3, 3, 0, 0],
+        color: {
+          type: 'linear',
+          x: 0, y: 0, x2: 0, y2: 1,
+          colorStops: [
+            { offset: 0, color: '#4dd0e1' },
+            { offset: 1, color: '#26a8b8' }
+          ]
+        }
+      },
+      emphasis: {
+        itemStyle: {
+          shadowBlur: 10,
+          shadowColor: 'rgba(77,208,225,0.5)'
+        }
+      },
+      label: {
+        show: true,
+        position: 'top',
+        color: '#4dd0e1',
+        fontSize: 10,
+        fontWeight: 'bold',
+        formatter: '{c}%'
+      },
+      data: [45, 28, 32, 40, 35]
+    },
+    {
+      name: '储备项目',
+      type: 'bar',
+      barWidth: '22%',
+      barGap: '15%',
+      animationDelay: function (idx) { return idx * 120 + 150 },
+      itemStyle: {
+        borderRadius: [3, 3, 0, 0],
+        color: {
+          type: 'linear',
+          x: 0, y: 0, x2: 0, y2: 1,
+          colorStops: [
+            { offset: 0, color: '#3b7bfd' },
+            { offset: 1, color: '#1a4fa0' }
+          ]
+        }
+      },
+      emphasis: {
+        itemStyle: {
+          shadowBlur: 10,
+          shadowColor: 'rgba(59,123,253,0.5)'
+        }
+      },
+      label: {
+        show: true,
+        position: 'top',
+        color: '#6b9bff',
+        fontSize: 10,
+        fontWeight: 'bold',
+        formatter: '{c}%'
+      },
+      data: [38, 22, 26, 33, 29]
+    },
+    {
+      name: '转化率',
+      type: 'line',
+      smooth: true,
+      symbol: 'circle',
+      symbolSize: 8,
+      animationDelay: 600,
+      lineStyle: { color: '#ff9800', width: 2.5 },
+      itemStyle: {
+        color: '#ff9800',
+        borderColor: '#fff',
+        borderWidth: 1.5
+      },
+      areaStyle: {
+        color: {
+          type: 'linear',
+          x: 0, y: 0, x2: 0, y2: 1,
+          colorStops: [
+            { offset: 0, color: 'rgba(255,152,0,0.25)' },
+            { offset: 1, color: 'rgba(255,152,0,0.02)' }
+          ]
+        }
+      },
+      emphasis: {
+        focus: 'series',
+        lineStyle: { width: 3.5 },
+        itemStyle: { borderWidth: 2.5 }
+      },
+      label: {
+        show: true,
+        position: 'top',
+        color: '#ff9800',
+        fontSize: 10,
+        fontWeight: 'bold',
+        formatter: '{c}%'
+      },
+      data: [72, 37, 47, 24, 39]
+    }
+  ]
+}
+
+const SCREEN_HORIZ_STACK_BAR = {
+  ...SCREEN_ANIMATION,
+  animationDuration: 1500,
+  animationEasing: 'cubicOut',
+  grid: {
+    left: '12%',
+    right: '8%',
+    top: '16%',
+    bottom: '10%',
+    containLabel: false
+  },
+  legend: {
+    top: '3%',
+    left: 'center',
+    itemWidth: 14,
+    itemHeight: 10,
+    textStyle: { color: 'rgba(255,255,255,0.8)', fontSize: 11 },
+    itemGap: 18,
+    data: [
+      { name: '类别A', icon: 'roundRect' },
+      { name: '类别B', icon: 'roundRect' },
+      { name: '类别C', icon: 'roundRect' },
+      { name: '类别D', icon: 'roundRect' }
+    ]
+  },
+  xAxis: {
+    type: 'value',
+    min: 0,
+    max: 15000,
+    splitNumber: 6,
+    axisLine: { lineStyle: { color: 'rgba(255,255,255,0.12)' } },
+    axisTick: { show: false },
+    axisLabel: {
+      color: 'rgba(255,255,255,0.5)',
+      fontSize: 10,
+      formatter: function (val) {
+        if (val === 0) return '0'
+        return (val / 1000) + 'k'
+      }
+    },
+    splitLine: {
+      lineStyle: { color: 'rgba(255,255,255,0.06)', type: 'dashed' }
+    }
+  },
+  yAxis: {
+    type: 'category',
+    data: ['数据', '数据', '数据', '数据', '数据', '数据', '数据'],
+    axisLine: { show: false },
+    axisTick: { show: false },
+    axisLabel: {
+      color: 'rgba(255,255,255,0.7)',
+      fontSize: 11,
+      fontWeight: 'bold',
+      padding: [0, 8, 0, 0]
+    },
+    splitLine: { show: false }
+  },
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: { type: 'shadow' },
+    backgroundColor: 'rgba(10,30,60,0.9)',
+    borderColor: 'rgba(45,212,191,0.3)',
+    textStyle: { color: '#fff', fontSize: 12 },
+    formatter: function (params) {
+      let html = '<b>' + params[0].axisValue + '</b><br/>'
+      params.forEach(function (p) {
+        html += p.marker + ' ' + p.seriesName + ': ' + p.value + '<br/>'
+      })
+      return html
+    }
+  },
+  series: [
+    {
+      name: '类别A',
+      type: 'bar',
+      barWidth: 16,
+      barGap: '30%',
+      stack: 'total',
+      animationDelay: function (idx) { return idx * 80 },
+      itemStyle: {
+        borderRadius: [0, 0, 0, 0],
+        borderColor: 'rgba(10, 24, 54, 0.85)',
+        borderWidth: 2,
+        color: {
+          type: 'linear',
+          x: 0, y: 0, x2: 1, y2: 0,
+          colorStops: [
+            { offset: 0, color: '#14b8a6' },
+            { offset: 1, color: '#2dd4bf' }
+          ]
+        }
+      },
+      label: {
+        show: true,
+        position: 'right',
+        color: '#2dd4bf',
+        fontSize: 10,
+        fontWeight: 'bold',
+        formatter: function (params) {
+          if (params.value > 0) return params.value
+          return ''
+        }
+      },
+      data: [3200, 2800, 3500, 2200, 4100, 3000, 2600]
+    },
+    {
+      name: '类别B',
+      type: 'bar',
+      barWidth: 16,
+      stack: 'total',
+      animationDelay: function (idx) { return idx * 80 + 120 },
+      itemStyle: {
+        borderColor: 'rgba(10, 24, 54, 0.85)',
+        borderWidth: 2,
+        borderColor: 'rgba(10, 24, 54, 0.85)',
+        borderWidth: 2,
+        color: {
+          type: 'linear',
+          x: 0, y: 0, x2: 1, y2: 0,
+          colorStops: [
+            { offset: 0, color: '#0ea5e9' },
+            { offset: 1, color: '#38bdf8' }
+          ]
+        }
+      },
+      label: {
+        show: true,
+        position: 'right',
+        color: '#38bdf8',
+        fontSize: 10,
+        fontWeight: 'bold',
+        formatter: function (params) {
+          if (params.value > 0) return params.value
+          return ''
+        }
+      },
+      data: [2400, 3100, 2800, 3500, 2600, 2900, 3200]
+    },
+    {
+      name: '类别C',
+      type: 'bar',
+      barWidth: 16,
+      stack: 'total',
+      animationDelay: function (idx) { return idx * 80 + 240 },
+      itemStyle: {
+        borderColor: 'rgba(10, 24, 54, 0.85)',
+        borderWidth: 2,
+        borderColor: 'rgba(10, 24, 54, 0.85)',
+        borderWidth: 2,
+        color: {
+          type: 'linear',
+          x: 0, y: 0, x2: 1, y2: 0,
+          colorStops: [
+            { offset: 0, color: '#6366f1' },
+            { offset: 1, color: '#818cf8' }
+          ]
+        }
+      },
+      label: {
+        show: true,
+        position: 'right',
+        color: '#818cf8',
+        fontSize: 10,
+        fontWeight: 'bold',
+        formatter: function (params) {
+          if (params.value > 0) return params.value
+          return ''
+        }
+      },
+      data: [1800, 1500, 2200, 1600, 1900, 2100, 1700]
+    },
+    {
+      name: '类别D',
+      type: 'bar',
+      barWidth: 16,
+      stack: 'total',
+      animationDelay: function (idx) { return idx * 80 + 360 },
+      itemStyle: {
+        borderColor: 'rgba(10, 24, 54, 0.85)',
+        borderWidth: 2,
+        color: {
+          type: 'linear',
+          x: 0, y: 0, x2: 1, y2: 0,
+          colorStops: [
+            { offset: 0, color: '#8b5cf6' },
+            { offset: 1, color: '#a78bfa' }
+          ]
+        }
+      },
+      label: {
+        show: true,
+        position: 'right',
+        color: '#a78bfa',
+        fontSize: 10,
+        fontWeight: 'bold',
+        formatter: function (params) {
+          if (params.value > 0) return params.value
+          return ''
+        }
+      },
+      data: [1200, 900, 1500, 1100, 1300, 1000, 1400]
+    }
+  ]
+}
+
 export {
   BAROPTION,
   MAPOPTION,
@@ -841,7 +1496,10 @@ export {
   SAFETY_RING_OPTION,
   SCREEN_BAR_OPTION,
   SCREEN_PIE_OPTION,
+  SCREEN_PIE_OPTION_2,
   SCREEN_LINE_OPTION,
   SCREEN_RADAR_OPTION,
-  SCREEN_AREA_STACK_OPTION
+  SCREEN_AREA_STACK_OPTION,
+  SCREEN_MIX_BAR_LINE,
+  SCREEN_HORIZ_STACK_BAR
 }

@@ -15,14 +15,17 @@ import {
   SAFETY_RING_OPTION,
   SCREEN_BAR_OPTION,
   SCREEN_PIE_OPTION,
+  SCREEN_PIE_OPTION_2,
   SCREEN_RADAR_OPTION,
   SCREEN_LINE_OPTION
   , SCREEN_AREA_STACK_OPTION
+  , SCREEN_MIX_BAR_LINE
+  , SCREEN_HORIZ_STACK_BAR
 } from './defaultOption'
 import echarts from '../../plugins/echarts'
 
 const GAUGE_TYPES = ['semiGauge', 'safetyRing']
-const SCREEN_CHART_TYPES = ['semiGauge', 'safetyRing', 'screenBar', 'screenPie', 'screenLine', 'screenArea']
+const SCREEN_CHART_TYPES = ['semiGauge', 'safetyRing', 'screenBar', 'screenPie', 'screenLine', 'screenArea', 'screenMixBarLine', 'screenHorizStackBar']
 const REPLAY_INTERVAL = 10000
 
 export default {
@@ -67,6 +70,12 @@ export default {
         return SCREEN_LINE_OPTION
       } else if (props.echartsType === 'screenArea') {
         return SCREEN_AREA_STACK_OPTION
+      } else if (props.echartsType === 'screenPie3D') {
+        return SCREEN_PIE_OPTION_2
+      } else if (props.echartsType === 'screenMixBarLine') {
+        return SCREEN_MIX_BAR_LINE
+      } else if (props.echartsType === 'screenHorizStackBar') {
+        return SCREEN_HORIZ_STACK_BAR
       }
       return null
     }
