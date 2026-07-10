@@ -37,7 +37,13 @@
             </div>
           </div>
         </div>
-
+        <!-- 进度追踪 -->
+        <div class="panel right-panel panel-enter" :style="{ '--d': '0.85s' }">
+          <div class="panel-title small-title">任务进度</div>
+          <div class="pt-container chart-fade-in" :style="{ '--d': '1.1s' }">
+            <progress-tracker />
+          </div>
+        </div>
         <!-- 课程概况 -->
         <div class="panel course-overview panel-enter" :style="{ '--d': '0.25s' }">
           <div class="panel-title">课程概况</div>
@@ -150,10 +156,11 @@
 
 <script>
 import mapEchart from '../components/Echart/MapEchart.vue'
+import ProgressTracker from '../components/ProgressTracker.vue'
 
 export default {
   name: 'Screen6',
-  components: { mapEchart },
+  components: { mapEchart, ProgressTracker },
   data () {
     return {
       activeGrade: 0,
@@ -560,6 +567,12 @@ export default {
 
 .chart-container--pie,
 .chart-container--line {
+  flex: 1;
+  min-height: 0;
+}
+
+/* ===== 进度追踪 ===== */
+.pt-container {
   flex: 1;
   min-height: 0;
 }

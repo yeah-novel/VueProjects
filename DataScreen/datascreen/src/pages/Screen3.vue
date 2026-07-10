@@ -56,6 +56,11 @@
             </div>
           </div>
         </div>
+
+        <!-- 排名 -->
+        <div class="chart-box country-rank-box chart-fade-in" style="--d: 1.1s">
+          <country-rank />
+        </div>
       </div>
 
       <div class="panel center-panel panel-enter" style="--d: 0.25s">
@@ -82,18 +87,21 @@
             <div class="small-chart-title">注意力指数密度曲线</div>
             <map-echart echarts-type="screenArea" height="140px" width="100%" />
           </div>
+          <div class="small-chart chart-fade-in" style="--d: 1.1s">
+            <primary-stats-card />
+          </div>
         </div>
       </div>
 
       <div class="panel right-panel panel-enter" style="--d: 0.4s">
         <div class="section-title">能力评价分析</div>
-        <div class="chart-box right-chart-box chart-fade-in" style="--d: 0.7s">
-          <map-echart echarts-type="screenBar" height="170px" />
-        </div>
+          <div class="small-chart chart-fade-in" style="--d: 1.2s">
+            <wind-speed-chart />
+          </div>
         <div class="section-title small-section-title">指数整合分析</div>
-        <div class="chart-box right-chart-box chart-fade-in" style="--d: 0.9s">
-          <map-echart echarts-type="screenBar" height="220px" width="100%" />
-        </div>
+          <div class="small-chart ch-heatmap-box chart-fade-in" style="--d: 1.1s">
+            <contribution-heatmap />
+          </div>
       </div>
     </div>
   </div>
@@ -101,10 +109,14 @@
 
 <script>
 import mapEchart from '../components/Echart/MapEchart.vue'
+import CountryRank from '../components/CountryRank.vue'
+import ContributionHeatmap from '../components/ContributionHeatmap.vue'
+import WindSpeedChart from '../components/WindSpeedChart.vue'
+import PrimaryStatsCard from '../components/PrimaryStatsCard.vue'
 
 export default {
   name: 'Screen3',
-  components: { mapEchart },
+  components: { mapEchart, CountryRank, ContributionHeatmap, WindSpeedChart, PrimaryStatsCard },
   data () {
     return {
       currentTime: '',
@@ -742,8 +754,16 @@ export default {
 
 .center-bottom-charts {
   display: grid;
-  grid-template-columns: repeat(1, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 8px;
+}
+
+.sc-transaction {
+  min-height: 140px;
+}
+
+.ch-heatmap-box {
+  min-height: 140px;
 }
 
 .small-chart,
@@ -771,6 +791,12 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+.country-rank-box {
+  flex: 1;
+  min-height: 0;
+  margin-top: 8px;
 }
 
 .radar-card {

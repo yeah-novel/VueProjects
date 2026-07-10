@@ -22,6 +22,7 @@ import {
   , SCREEN_MIX_BAR_LINE
   , SCREEN_HORIZ_STACK_BAR
   , SCREEN_SCATTER_OPTION
+  , SCREEN_DOUBLE_RING_OPTION
   , SCHOOL_BAR_OPTION
   , SCHOOL_RADAR_OPTION
   , SCHOOL_PIE_OPTION
@@ -30,7 +31,7 @@ import {
 import echarts from '../../plugins/echarts'
 
 const GAUGE_TYPES = ['semiGauge', 'safetyRing']
-const SCREEN_CHART_TYPES = ['semiGauge', 'safetyRing', 'screenBar', 'screenPie', 'screenLine', 'screenArea', 'screenMixBarLine', 'screenHorizStackBar', 'screenScatter', 'schoolBar', 'schoolRadar', 'schoolPie', 'schoolLine']
+const SCREEN_CHART_TYPES = ['semiGauge', 'safetyRing', 'screenBar', 'screenPie', 'screenLine', 'screenArea', 'screenMixBarLine', 'screenHorizStackBar', 'screenScatter', 'screenDoubleRing', 'schoolBar', 'schoolRadar', 'schoolPie', 'schoolLine']
 const REPLAY_INTERVAL = 10000
 
 export default {
@@ -84,6 +85,8 @@ export default {
         return SCREEN_HORIZ_STACK_BAR
       } else if (props.echartsType === 'screenScatter') {
         return SCREEN_SCATTER_OPTION
+      } else if (props.echartsType === 'screenDoubleRing') {
+        return SCREEN_DOUBLE_RING_OPTION
       } else if (props.echartsType === 'schoolBar') {
         return SCHOOL_BAR_OPTION
       } else if (props.echartsType === 'schoolRadar') {

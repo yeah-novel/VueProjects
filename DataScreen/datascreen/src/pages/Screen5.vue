@@ -2,90 +2,19 @@
   <div class="s5-page">
     <!-- ===== 顶部栏 ===== -->
     <div class="s5-topbar">
-      <div class="s5-top-left">
-        <div class="s5-top-label">服务数据</div>
-        <div class="s5-mini-gauges">
-          <div class="s5-mini-gauge">
-            <map-echart echarts-type="semiGauge" width="70px" height="70px" />
-            <span class="s5-gauge-val">2.5</span>
-            <span class="s5-gauge-tag">平均等候</span>
-          </div>
-          <div class="s5-mini-gauge">
-            <map-echart echarts-type="semiGauge" width="70px" height="70px" />
-            <span class="s5-gauge-val">3.5</span>
-            <span class="s5-gauge-tag">平均办理</span>
-          </div>
-          <div class="s5-mini-gauge">
-            <map-echart echarts-type="semiGauge" width="70px" height="70px" />
-            <span class="s5-gauge-val">4.0</span>
-            <span class="s5-gauge-tag">平均耗时</span>
-          </div>
-        </div>
-      </div>
+    
       <div class="s5-top-center">
         <div class="s5-top-title">某某市某某厅办税渠道运行状态监控平台</div>
         <div class="s5-top-subtitle">Tax Service Channel Monitoring Platform</div>
       </div>
-      <div class="s5-top-right">
-        <div class="s5-top-label">业务数据</div>
-        <div class="s5-ring-group">
-          <div class="s5-ring-item">
-            <map-echart echarts-type="safetyRing" width="50px" height="55px" />
-            <span class="s5-ring-val">35</span>
-          </div>
-          <div class="s5-ring-item">
-            <map-echart echarts-type="safetyRing" width="50px" height="55px" />
-            <span class="s5-ring-val">20</span>
-          </div>
-          <div class="s5-ring-item">
-            <map-echart echarts-type="safetyRing" width="50px" height="55px" />
-            <span class="s5-ring-val">40</span>
-          </div>
-          <div class="s5-ring-item">
-            <map-echart echarts-type="safetyRing" width="50px" height="55px" />
-            <span class="s5-ring-val">12</span>
-          </div>
-        </div>
-      </div>
+
     </div>
 
     <!-- ===== 主体区域 ===== -->
     <div class="s5-body">
       <!-- ===== 左列 ===== -->
       <div class="s5-col s5-col-left">
-        <!-- 各办税渠道使用情况 -->
-        <div class="s5-card">
-          <div class="s5-card-title">各办税渠道使用情况</div>
-          <div class="s5-chart-box">
-            <map-echart echarts-type="screenHorizStackBar" height="200px" />
-          </div>
-        </div>
-        <!-- 接待情况 -->
-        <div class="s5-card">
-          <div class="s5-card-title">接待情况</div>
-          <div class="s5-reception">
-            <div class="s5-reception-item">
-              <span class="s5-reception-label">本月累计办事人次</span>
-              <span class="s5-reception-num">40</span>
-              <span class="s5-reception-unit">人</span>
-            </div>
-            <div class="s5-reception-item">
-              <span class="s5-reception-label">今日接待人数</span>
-              <span class="s5-reception-num">40</span>
-              <span class="s5-reception-unit">人</span>
-            </div>
-            <div class="s5-reception-item">
-              <span class="s5-reception-label">本周接待人数</span>
-              <span class="s5-reception-num">101</span>
-              <span class="s5-reception-unit">人</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ===== 中列 ===== -->
-      <div class="s5-col s5-col-center">
-        <!-- 等待人数 -->
+         <!-- 等待人数 -->
         <div class="s5-waiting-area">
           <div class="s5-waiting-main">
             <div class="s5-waiting-label">当前等待人数</div>
@@ -110,16 +39,55 @@
             </div>
           </div>
         </div>
-
-        <!-- 业务办理实时监管汇总 -->
-        <div class="s5-card s5-card-monitor">
-          <div class="s5-card-title">业务办理实时监管汇总</div>
-          <div class="s5-monitor-charts">
-            <div class="s5-doughnut-box">
-              <map-echart echarts-type="screenPie" height="220px" />
+         <!-- 接待情况 -->
+        <div class="s5-card">
+          <div class="s5-card-title">接待情况</div>
+          <div class="s5-reception">
+            <div class="s5-reception-item">
+              <span class="s5-reception-label">本月累计办事人次</span>
+              <span class="s5-reception-num">40</span>
+              <span class="s5-reception-unit">人</span>
+            </div>
+            <div class="s5-reception-item">
+              <span class="s5-reception-label">今日接待人数</span>
+              <span class="s5-reception-num">40</span>
+              <span class="s5-reception-unit">人</span>
+            </div>
+            <div class="s5-reception-item">
+              <span class="s5-reception-label">本周接待人数</span>
+              <span class="s5-reception-num">101</span>
+              <span class="s5-reception-unit">人</span>
             </div>
           </div>
         </div>
+        <!-- 各办税渠道使用情况 -->
+        <div class="s5-card">
+          <div class="s5-card-title">各办税渠道使用情况</div>
+          <div class="s5-chart-box">
+            <map-echart echarts-type="screenHorizStackBar" height="200px" />
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== 中列 ===== -->
+      <div class="s5-col s5-col-center">
+        <!-- 气泡图表 -->
+        <div class="s5-card s5-card-bubble">
+          <div class="s5-card-title">数据可视化分析</div>
+          <div class="s5-doughnut-box">
+            <bubble-chart />
+          </div>
+        </div>
+
+        <!-- 业务办理实时监管汇总 -->
+        <!-- <div class="s5-card s5-card-monitor">
+          <div class="s5-card-title">业务办理实时监管汇总</div>
+          <div class="s5-monitor-charts">
+            <div class="s5-doughnut-box">
+              <map-echart echarts-type="screenDoubleRing" height="220px" />
+            </div>
+          </div>
+        </div> -->
 
         <!-- 底部小图 -->
         <div class="s5-bottom-charts">
@@ -136,6 +104,17 @@
 
       <!-- ===== 右列 ===== -->
       <div class="s5-col s5-col-right">
+         <!-- 风险提醒 -->
+        <div class="s5-card">
+          <div class="s5-card-title">风险提醒</div>
+          <div class="s5-risk-list">
+            <div class="s5-risk-item" v-for="(item, idx) in riskList" :key="idx">
+              <span class="s5-risk-dot" :style="{ background: item.color }"></span>
+              <span class="s5-risk-text">{{ item.text }}</span>
+              <a class="s5-risk-link" href="javascript:;">了解详情</a>
+            </div>
+          </div>
+        </div>
         <!-- 区域收入情况 -->
         <div class="s5-card">
           <div class="s5-card-title">区域收入情况</div>
@@ -152,28 +131,11 @@
               <span class="s5-income-amt">52.68万</span>
             </div>
           </div>
-          <div class="s5-tax-gauge">
-            <span class="s5-tax-label">税收占比</span>
-            <map-echart echarts-type="semiGauge" height="100px" />
-          </div>
         </div>
-
         <!-- 数据统计分析 -->
-        <div class="s5-card">
-          <div class="s5-card-title">数据统计分析</div>
-          <map-echart echarts-type="screenBar" height="150px" />
-        </div>
-
-        <!-- 风险提醒 -->
-        <div class="s5-card">
-          <div class="s5-card-title">风险提醒</div>
-          <div class="s5-risk-list">
-            <div class="s5-risk-item" v-for="(item, idx) in riskList" :key="idx">
-              <span class="s5-risk-dot" :style="{ background: item.color }"></span>
-              <span class="s5-risk-text">{{ item.text }}</span>
-              <a class="s5-risk-link" href="javascript:;">了解详情</a>
-            </div>
-          </div>
+        <!-- Watchlist -->
+        <div class="s5-card s5-card-watchlist">
+          <watchlist-card />
         </div>
       </div>
     </div>
@@ -195,10 +157,12 @@
 
 <script>
 import mapEchart from '../components/Echart/MapEchart.vue'
+import BubbleChart from '../components/BubbleChart.vue'
+import WatchlistCard from '../components/WatchlistCard.vue'
 
 export default {
   name: 'Screen5',
-  components: { mapEchart },
+  components: { mapEchart, BubbleChart, WatchlistCard },
   data () {
     return {
       footerDate: '',
@@ -356,7 +320,7 @@ export default {
 }
 
 .s5-col-left {
-  width: 260px;
+  width: 18vw;
   flex-shrink: 0;
 }
 
@@ -366,7 +330,7 @@ export default {
 }
 
 .s5-col-right {
-  width: 280px;
+  width: 18vw;
   flex-shrink: 0;
 }
 
@@ -439,6 +403,7 @@ export default {
   border-radius: 10px;
   padding: 16px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   gap: 24px;
   box-shadow: inset 0 0 30px rgba(23, 71, 140, 0.1);
@@ -505,21 +470,32 @@ export default {
   margin-top: 2px;
 }
 
-/* ===== 监管图表 ===== */
-.s5-card-monitor {
+/* ===== 气泡图表 ===== */
+.s5-card-bubble {
   flex: 1;
   min-height: 0;
 }
 
-.s5-monitor-charts {
+.s5-bubble-box {
   flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+/* ===== 监管图表 ===== */
+.s5-card-monitor {
+  flex-shrink: 0;
+}
+
+.s5-monitor-charts {
   display: flex;
   min-height: 0;
 }
 
 .s5-doughnut-box {
   flex: 1;
-  min-height: 0;
+  min-height: 120px;
 }
 
 /* ===== 底部小图 ===== */
@@ -582,6 +558,13 @@ export default {
   font-size: 12px;
   color: rgba(255, 255, 255, 0.6);
   white-space: nowrap;
+}
+
+/* ===== Watchlist ===== */
+.s5-card-watchlist {
+  padding: 0;
+  overflow: hidden;
+  flex-shrink: 0;
 }
 
 /* ===== 风险提醒 ===== */

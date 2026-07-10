@@ -1882,6 +1882,217 @@ const SCHOOL_LINE_OPTION = {
   }]
 }
 
+// ============================================================
+//  双层环形图 (Double Ring Donut)
+// ============================================================
+const SCREEN_DOUBLE_RING_OPTION = {
+  ...SCREEN_ANIMATION,
+  animationDuration: 1600,
+  animationEasing: 'cubicOut',
+  tooltip: {
+    trigger: 'item',
+    formatter: '{b}: {c} ({d}%)',
+    backgroundColor: 'rgba(0,0,0,0.75)',
+    textStyle: { color: '#fff', fontSize: 12 }
+  },
+  legend: {
+    show: false
+  },
+  graphic: [
+    {
+      type: 'text',
+      left: 'center',
+      top: '48%',
+      style: {
+        text: '总计',
+        fill: 'rgba(255,255,255,0.45)',
+        fontSize: 12,
+        fontWeight: 'normal',
+        textAlign: 'center',
+        textVerticalAlign: 'middle'
+      },
+      z: 100
+    },
+    {
+      type: 'text',
+      left: 'center',
+      top: '54%',
+      style: {
+        text: '128',
+        fill: '#fff',
+        fontSize: 26,
+        fontWeight: 'bold',
+        textAlign: 'center',
+        textVerticalAlign: 'middle'
+      },
+      z: 100
+    }
+  ],
+  series: [
+    // ===== 外圈环形 =====
+    {
+      name: '外圈',
+      type: 'pie',
+      z: 2,
+      radius: ['60%', '82%'],
+      center: ['50%', '50%'],
+      avoidLabelOverlap: false,
+      padAngle: 2,
+      itemStyle: {
+        borderRadius: 6,
+        borderColor: 'rgba(10, 24, 54, 0.85)',
+        borderWidth: 2
+      },
+      label: {
+        show: false
+      },
+      labelLine: { show: false },
+      emphasis: {
+        scale: true,
+        scaleSize: 6,
+        itemStyle: {
+          shadowBlur: 14,
+          shadowColor: 'rgba(255,255,255,0.3)'
+        }
+      },
+      data: [
+        {
+          value: 35,
+          name: '类别A',
+          itemStyle: {
+            color: {
+              type: 'linear',
+              x: 0, y: 0, x2: 0, y2: 1,
+              colorStops: [
+                { offset: 0, color: '#a78bfa' },
+                { offset: 1, color: '#7c3aed' }
+              ]
+            }
+          }
+        },
+        {
+          value: 28,
+          name: '类别B',
+          itemStyle: {
+            color: {
+              type: 'linear',
+              x: 0, y: 0, x2: 0, y2: 1,
+              colorStops: [
+                { offset: 0, color: '#60a5fa' },
+                { offset: 1, color: '#2563eb' }
+              ]
+            }
+          }
+        },
+        {
+          value: 22,
+          name: '类别C',
+          itemStyle: {
+            color: {
+              type: 'linear',
+              x: 0, y: 0, x2: 0, y2: 1,
+              colorStops: [
+                { offset: 0, color: '#f472b6' },
+                { offset: 1, color: '#ec4899' }
+              ]
+            }
+          }
+        },
+        {
+          value: 18,
+          name: '类别D',
+          itemStyle: {
+            color: {
+              type: 'linear',
+              x: 0, y: 0, x2: 0, y2: 1,
+              colorStops: [
+                { offset: 0, color: '#fb923c' },
+                { offset: 1, color: '#f97316' }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    // ===== 内圈环形 =====
+    {
+      name: '内圈',
+      type: 'pie',
+      z: 3,
+      radius: ['22%', '46%'],
+      center: ['50%', '50%'],
+      avoidLabelOverlap: false,
+      padAngle: 2,
+      itemStyle: {
+        borderRadius: 6,
+        borderColor: 'rgba(10, 24, 54, 0.85)',
+        borderWidth: 2
+      },
+      label: {
+        show: true,
+        position: 'inside',
+        color: '#fff',
+        fontSize: 12,
+        fontWeight: 'bold',
+        formatter: '{d}%'
+      },
+      labelLine: { show: false },
+      emphasis: {
+        scale: true,
+        scaleSize: 8,
+        itemStyle: {
+          shadowBlur: 14,
+          shadowColor: 'rgba(255,255,255,0.3)'
+        }
+      },
+      data: [
+        {
+          value: 40,
+          name: '组X',
+          itemStyle: {
+            color: {
+              type: 'linear',
+              x: 0, y: 0, x2: 0, y2: 1,
+              colorStops: [
+                { offset: 0, color: '#67e8f9' },
+                { offset: 1, color: '#22d3ee' }
+              ]
+            }
+          }
+        },
+        {
+          value: 35,
+          name: '组Y',
+          itemStyle: {
+            color: {
+              type: 'linear',
+              x: 0, y: 0, x2: 0, y2: 1,
+              colorStops: [
+                { offset: 0, color: '#c084fc' },
+                { offset: 1, color: '#a855f7' }
+              ]
+            }
+          }
+        },
+        {
+          value: 25,
+          name: '组Z',
+          itemStyle: {
+            color: {
+              type: 'linear',
+              x: 0, y: 0, x2: 0, y2: 1,
+              colorStops: [
+                { offset: 0, color: '#f9a8d4' },
+                { offset: 1, color: '#f472b6' }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
+
 export {
   BAROPTION,
   MAPOPTION,
@@ -1898,6 +2109,7 @@ export {
   SCREEN_MIX_BAR_LINE,
   SCREEN_HORIZ_STACK_BAR,
   SCREEN_SCATTER_OPTION,
+  SCREEN_DOUBLE_RING_OPTION,
   SCHOOL_BAR_OPTION,
   SCHOOL_RADAR_OPTION,
   SCHOOL_PIE_OPTION,
