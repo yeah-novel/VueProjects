@@ -2093,6 +2093,308 @@ const SCREEN_DOUBLE_RING_OPTION = {
   ]
 }
 
+// ============================================================
+//  Screen2 - 数据大屏 图表配置
+// ============================================================
+
+// 条形图 - 2010-2013, 3个系列
+const SCREEN2_BAR_OPTION = {
+  ...SCREEN_ANIMATION,
+  animationDuration: 1600,
+  animationEasing: 'cubicOut',
+  grid: {
+    left: '6%',
+    right: '4%',
+    top: '24%',
+    bottom: '10%',
+    containLabel: true
+  },
+  legend: {
+    top: '4%',
+    left: 'center',
+    itemWidth: 12,
+    itemHeight: 6,
+    textStyle: { color: 'rgba(255,255,255,0.8)', fontSize: 9 },
+    itemGap: 10,
+    data: ['Series 1', 'Series 2', 'Series 3']
+  },
+  xAxis: {
+    type: 'category',
+    data: ['2010', '2011', '2012', '2013'],
+    axisLine: { lineStyle: { color: 'rgba(255,255,255,0.15)' } },
+    axisTick: { show: false },
+    axisLabel: { color: 'rgba(255,255,255,0.7)', fontSize: 10 }
+  },
+  yAxis: {
+    type: 'value',
+    show: false,
+    max: 100
+  },
+  tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+  series: [
+    {
+      name: 'Series 1',
+      type: 'bar',
+      barWidth: '16%',
+      barGap: '15%',
+      animationDelay: function (idx) { return idx * 120 },
+      itemStyle: {
+        borderRadius: [3, 3, 0, 0],
+        color: { type: 'linear', x: 0, y: 0, x2: 0, y2: 1, colorStops: [{ offset: 0, color: '#4dd0e1' }, { offset: 1, color: '#1a6b8a' }] }
+      },
+      data: [65, 42, 78, 55]
+    },
+    {
+      name: 'Series 2',
+      type: 'bar',
+      barWidth: '16%',
+      barGap: '15%',
+      animationDelay: function (idx) { return idx * 120 + 100 },
+      itemStyle: {
+        borderRadius: [3, 3, 0, 0],
+        color: { type: 'linear', x: 0, y: 0, x2: 0, y2: 1, colorStops: [{ offset: 0, color: '#f5a623' }, { offset: 1, color: '#c77d1a' }] }
+      },
+      data: [48, 75, 35, 62]
+    },
+    {
+      name: 'Series 3',
+      type: 'bar',
+      barWidth: '16%',
+      barGap: '15%',
+      animationDelay: function (idx) { return idx * 120 + 200 },
+      itemStyle: {
+        borderRadius: [3, 3, 0, 0],
+        color: { type: 'linear', x: 0, y: 0, x2: 0, y2: 1, colorStops: [{ offset: 0, color: '#9b7fd4' }, { offset: 1, color: '#6b4fa0' }] }
+      },
+      data: [80, 55, 68, 90]
+    }
+  ]
+}
+
+// 雷达图 - 标题一 到 标题五
+const SCREEN2_RADAR_OPTION = {
+  ...SCREEN_ANIMATION,
+  animationDuration: 2000,
+  animationEasing: 'cubicOut',
+  radar: {
+    center: ['50%', '52%'],
+    radius: '60%',
+    startAngle: 90,
+    splitNumber: 5,
+    shape: 'polygon',
+    axisLine: { lineStyle: { color: 'rgba(255,255,255,0.12)' } },
+    splitLine: { lineStyle: { color: 'rgba(255,255,255,0.12)' } },
+    splitArea: {
+      areaStyle: {
+        color: ['rgba(12,34,85,0.05)', 'transparent']
+      }
+    },
+    indicator: [
+      { name: '标题一', max: 100 },
+      { name: '标题二', max: 100 },
+      { name: '标题三', max: 100 },
+      { name: '标题四', max: 100 },
+      { name: '标题五', max: 100 }
+    ],
+    axisName: { color: '#fff', fontSize: 10 }
+  },
+  tooltip: { show: false },
+  series: [{
+    type: 'radar',
+    areaStyle: {
+      color: {
+        type: 'linear',
+        x: 0, y: 0, x2: 0, y2: 1,
+        colorStops: [
+          { offset: 0, color: 'rgba(57, 171, 255, 0.45)' },
+          { offset: 1, color: 'rgba(93, 255, 232, 0.18)' }
+        ]
+      }
+    },
+    lineStyle: { color: '#4bd3ff', width: 2 },
+    symbol: 'circle',
+    symbolSize: 5,
+    itemStyle: { color: '#4bd3ff' },
+    data: [
+      { value: [85, 72, 90, 58, 78], name: '数据' }
+    ]
+  }]
+}
+
+// 折线图 - Q1-Q12
+const SCREEN2_LINE_OPTION = {
+  ...SCREEN_ANIMATION,
+  animationDuration: 2200,
+  animationEasing: 'cubicInOut',
+  grid: {
+    left: '4%',
+    right: '2%',
+    top: '14%',
+    bottom: '14%',
+    containLabel: true
+  },
+  xAxis: {
+    type: 'category',
+    boundaryGap: false,
+    data: ['Q1', 'Q2', 'Q3', 'Q4', 'Q5', 'Q6', 'Q7', 'Q8', 'Q9', 'Q10', 'Q11', 'Q12'],
+    axisLine: { lineStyle: { color: 'rgba(255,255,255,0.2)' } },
+    axisTick: { show: false },
+    axisLabel: { color: 'rgba(255,255,255,0.6)', fontSize: 8 }
+  },
+  yAxis: {
+    type: 'value',
+    min: 0,
+    max: 100,
+    splitNumber: 5,
+    axisLine: { show: false },
+    axisTick: { show: false },
+    axisLabel: { color: 'rgba(255,255,255,0.5)', fontSize: 8 },
+    splitLine: { lineStyle: { color: 'rgba(255,255,255,0.06)' } }
+  },
+  tooltip: { trigger: 'axis' },
+  series: [{
+    name: '数据',
+    type: 'line',
+    smooth: true,
+    animationDelay: 0,
+    symbol: 'circle',
+    symbolSize: 4,
+    showSymbol: true,
+    lineStyle: { color: '#4dd0e1', width: 2 },
+    itemStyle: { color: '#4dd0e1' },
+    areaStyle: {
+      color: {
+        type: 'linear',
+        x: 0, y: 0, x2: 0, y2: 1,
+        colorStops: [
+          { offset: 0, color: 'rgba(77, 208, 225, 0.35)' },
+          { offset: 1, color: 'rgba(77, 208, 225, 0.02)' }
+        ]
+      }
+    },
+    data: [45, 52, 38, 65, 58, 72, 48, 55, 68, 42, 60, 78]
+  }]
+}
+
+// 饼图 - It's Your Style! / Professional! / Cloud System! / Consulting!
+const SCREEN2_PIE_OPTION = {
+  ...SCREEN_ANIMATION,
+  animationDuration: 1400,
+  animationEasing: 'cubicOut',
+  color: ['#4dd0e1', '#f5a623', '#9b7fd4', '#5cb87a'],
+  legend: {
+    orient: 'vertical',
+    right: '5%',
+    top: 'center',
+    itemWidth: 8,
+    itemHeight: 8,
+    itemGap: 10,
+    textStyle: {
+      color: 'rgba(255,255,255,0.85)',
+      fontSize: 9
+    }
+  },
+  series: [{
+    type: 'pie',
+    animationType: 'scale',
+    animationEasing: 'elasticOut',
+    animationDelay: function (idx) { return idx * 180 },
+    radius: ['0%', '55%'],
+    center: ['32%', '50%'],
+    itemStyle: {
+      borderRadius: 4,
+      borderColor: 'rgba(26, 58, 107, 0.8)',
+      borderWidth: 2
+    },
+    label: {
+      show: true,
+      position: 'inside',
+      color: '#fff',
+      fontSize: 10,
+      fontWeight: 'bold',
+      formatter: '{d}%'
+    },
+    labelLine: { show: false },
+    emphasis: {
+      scale: true,
+      scaleSize: 8,
+      itemStyle: {
+        shadowBlur: 12,
+        shadowColor: 'rgba(0, 0, 0, 0.35)'
+      }
+    },
+    data: [
+      { value: 59, name: "It's Your Style!" },
+      { value: 25, name: 'Professional!' },
+      { value: 10, name: 'Cloud System!' },
+      { value: 6, name: 'Consulting!' }
+    ]
+  }]
+}
+
+// 68% 半圆仪表盘
+const SCREEN2_GAUGE_68 = {
+  ...SCREEN_ANIMATION,
+  animationDuration: 2200,
+  series: [{
+    type: 'gauge',
+    center: ['50%', '75%'],
+    radius: '90%',
+    startAngle: 180,
+    endAngle: 0,
+    min: 0,
+    max: 100,
+    splitNumber: 1,
+    itemStyle: { color: '#f5a623' },
+    progress: {
+      show: true,
+      width: 14,
+      itemStyle: {
+        color: {
+          type: 'linear',
+          x: 0,
+          y: 0,
+          x2: 1,
+          y2: 0,
+          colorStops: [
+            { offset: 0, color: '#c77d1a' },
+            { offset: 1, color: '#f5a623' }
+          ]
+        }
+      }
+    },
+    pointer: { show: false },
+    axisLine: {
+      lineStyle: {
+        width: 14,
+        color: [[1, 'rgba(30, 80, 160, 0.35)']]
+      }
+    },
+    axisTick: { show: false },
+    splitLine: { show: false },
+    axisLabel: {
+      distance: -22,
+      color: 'rgba(255,255,255,0.6)',
+      fontSize: 10,
+      formatter: function (val) {
+        if (val === 0) return '0%'
+        if (val === 100) return '100%'
+        return ''
+      }
+    },
+    title: { show: false },
+    detail: {
+      valueAnimation: true,
+      offsetCenter: [0, '-5%'],
+      fontSize: 20,
+      fontWeight: 'bold',
+      color: '#fff',
+      formatter: '{value}%\nwhat you need'
+    },
+    data: [{ value: 68 }]
+  }]
+}
+
 export {
   BAROPTION,
   MAPOPTION,
@@ -2113,5 +2415,10 @@ export {
   SCHOOL_BAR_OPTION,
   SCHOOL_RADAR_OPTION,
   SCHOOL_PIE_OPTION,
-  SCHOOL_LINE_OPTION
+  SCHOOL_LINE_OPTION,
+  SCREEN2_BAR_OPTION,
+  SCREEN2_RADAR_OPTION,
+  SCREEN2_LINE_OPTION,
+  SCREEN2_PIE_OPTION,
+  SCREEN2_GAUGE_68
 }

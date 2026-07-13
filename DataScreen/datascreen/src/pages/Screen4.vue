@@ -25,32 +25,6 @@
                     <div class="card-value">45</div>
                     <div class="card-label">专项立项</div>
                 </div>
-                <div class="overview-card">
-                    <div class="card-value">7890</div>
-                    <div class="card-label">自主备案项目</div>
-                </div>
-                <div class="overview-card">
-                    <div class="card-value">23451</div>
-                    <div class="card-label">储备总数</div>
-                </div>
-                <div class="overview-card">
-                    <div class="card-value">345</div>
-                    <div class="card-label">项目验收</div>
-                </div>
-                </div>
-                
-
-                <div class="chart-panel">
-                  <target-gauge-card
-                    title="汽车芯片设计中心"
-                    main-value="328万"
-                    main-label="季度目标"
-                    :percentage="45"
-                    :targets="carTargets"
-                    color="#ffa726"
-                    width="100%"
-                    height="200px"
-                  />
                 </div>
 
                 <div class="chart-panel">
@@ -68,6 +42,18 @@
                     </div>
                     <map-echart echarts-type="semiGauge" height="150px" />
                   </div>
+                </div>
+                <div class="chart-panel">
+                  <target-gauge-card
+                    title="汽车芯片设计中心"
+                    main-value="328万"
+                    main-label="季度目标"
+                    :percentage="45"
+                    :targets="carTargets"
+                    color="#ffa726"
+                    width="100%"
+                    height="200px"
+                  />
                 </div>
               </div>
             </div>
@@ -359,8 +345,8 @@ export default {
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 14px;
-  padding: 10px;
-  min-height: 50px;
+  padding: 8px;
+  /* min-height: 50px; */
 }
 
 .card-value {

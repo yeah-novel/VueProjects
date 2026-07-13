@@ -35,7 +35,7 @@
     </div>
 
     <!-- ===== 底部文字 ===== -->
-    <div class="cr-footer-text">Minim dolor in amet nulla laboris enim dolore consequatt.</div>
+    <!-- <div class="cr-footer-text">Minim dolor in amet nulla laboris enim dolore consequatt.</div> -->
   </div>
 </template>
 
@@ -80,7 +80,7 @@ export default {
   width: 100%;
   height: 100%;
   border-radius: 10px;
-  padding: 14px 16px;
+  /* padding: 10px 10px; */
   display: flex;
   flex-direction: column;
 }

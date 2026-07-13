@@ -4,7 +4,7 @@
     <div class="ps-hero">
       <div class="ps-primary-label">PRIMARY TEXT</div>
       <div class="ps-primary-value">5.987,34</div>
-      <div class="ps-secondary-text">Secondary text</div>
+      <!-- <div class="ps-secondary-text">Secondary text</div> -->
     </div>
 
     <!-- ===== 水平条形图 ===== -->
@@ -94,7 +94,7 @@ export default {
   width: 100%;
   height: 100%;
   border-radius: 10px;
-  padding: 14px 16px;
+  /* padding: 10px 10px; */
   display: flex;
   flex-direction: column;
 }

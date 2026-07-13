@@ -62,7 +62,7 @@
             <bubble-chart />
           </div>
           <div class="small-chart chart-fade-in" style="--d: 0.8s">
-            <div class="small-chart-title">注意力等级人数分布</div>
+            <!-- <div class="small-chart-title">注意力等级人数分布</div> -->
             <contribution-heatmap />
           </div>
         </div>

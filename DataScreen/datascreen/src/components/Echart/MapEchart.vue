@@ -17,16 +17,21 @@ import {
   SCREEN_PIE_OPTION,
   SCREEN_PIE_OPTION_2,
   SCREEN_RADAR_OPTION,
-  SCREEN_LINE_OPTION
-  , SCREEN_AREA_STACK_OPTION
-  , SCREEN_MIX_BAR_LINE
-  , SCREEN_HORIZ_STACK_BAR
-  , SCREEN_SCATTER_OPTION
-  , SCREEN_DOUBLE_RING_OPTION
-  , SCHOOL_BAR_OPTION
-  , SCHOOL_RADAR_OPTION
-  , SCHOOL_PIE_OPTION
-  , SCHOOL_LINE_OPTION
+  SCREEN_LINE_OPTION,
+  SCREEN_AREA_STACK_OPTION,
+  SCREEN_MIX_BAR_LINE,
+  SCREEN_HORIZ_STACK_BAR,
+  SCREEN_SCATTER_OPTION,
+  SCREEN_DOUBLE_RING_OPTION,
+  SCHOOL_BAR_OPTION,
+  SCHOOL_RADAR_OPTION,
+  SCHOOL_PIE_OPTION,
+  SCHOOL_LINE_OPTION,
+  SCREEN2_BAR_OPTION,
+  SCREEN2_RADAR_OPTION,
+  SCREEN2_LINE_OPTION,
+  SCREEN2_PIE_OPTION,
+  SCREEN2_GAUGE_68
 } from './defaultOption'
 import echarts from '../../plugins/echarts'
 
@@ -95,6 +100,16 @@ export default {
         return SCHOOL_PIE_OPTION
       } else if (props.echartsType === 'schoolLine') {
         return SCHOOL_LINE_OPTION
+      } else if (props.echartsType === 'screen2Bar') {
+        return SCREEN2_BAR_OPTION
+      } else if (props.echartsType === 'screen2Radar') {
+        return SCREEN2_RADAR_OPTION
+      } else if (props.echartsType === 'screen2Line') {
+        return SCREEN2_LINE_OPTION
+      } else if (props.echartsType === 'screen2Pie') {
+        return SCREEN2_PIE_OPTION
+      } else if (props.echartsType === 'screen2Gauge68') {
+        return SCREEN2_GAUGE_68
       }
       return null
     }
