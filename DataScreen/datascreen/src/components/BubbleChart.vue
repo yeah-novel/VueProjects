@@ -296,7 +296,6 @@ export default {
 .bubble-chart {
   width: 100%;
   height: 100%;
-  background: radial-gradient(ellipse at 50% 40%, #0d1b3e, #060e24);
   border-radius: 10px;
   display: flex;
   flex-direction: column;
@@ -311,7 +310,6 @@ export default {
   justify-content: space-between;
   padding: 10px 16px;
   flex-shrink: 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .bc-title {

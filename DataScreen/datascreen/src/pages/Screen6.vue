@@ -1,21 +1,5 @@
 <template>
   <div class="school-dashboard">
-    <!-- ===== 顶部导航 ===== -->
-    <div class="top-bar">
-      <div class="top-left">
-        <span class="switch-btn">切换大屏</span>
-      </div>
-      <div class="top-center">
-        <div class="header-title">
-          <span class="title-deco-left"></span>
-          <span class="title-text">学校大脑数据中心</span>
-          <span class="title-deco-right"></span>
-        </div>
-      </div>
-      <div class="top-right">
-        <span class="switch-btn">切换全屏</span>
-      </div>
-    </div>
 
     <!-- ===== 主体区域 ===== -->
     <div class="main-area">
@@ -35,13 +19,6 @@
               <span class="metric-value metric-count">{{ animatedClasses }}</span>
               <span class="metric-unit">班级数(个)</span>
             </div>
-          </div>
-        </div>
-        <!-- 进度追踪 -->
-        <div class="panel right-panel panel-enter" :style="{ '--d': '0.85s' }">
-          <div class="panel-title small-title">任务进度</div>
-          <div class="pt-container chart-fade-in" :style="{ '--d': '1.1s' }">
-            <progress-tracker />
           </div>
         </div>
         <!-- 课程概况 -->
@@ -345,7 +322,7 @@ export default {
 /* ==================== 主体区域 ==================== */
 .main-area {
   display: flex;
-  gap: 14px;
+  gap: 10px;
   flex: 1;
   min-height: 0;
   max-height: 65vh;
@@ -357,7 +334,7 @@ export default {
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
   min-height: 0;
 }
 

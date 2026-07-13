@@ -1,50 +1,17 @@
 <template>
   <div class="screen4-page">
-        <div class="screen4-header">
-        <div class="header-left">
-            <div class="brand">
-            <div class="brand-mark"></div>
-            <div>
-                <div class="brand-title">总体看板</div>
-                <div class="brand-subtitle">产品主题</div>
-            </div>
-            </div>
-        </div>
-        <div class="header-right">
-            <div class="year-label">2024年</div>
-            <div class="period-label">05月</div>
-        </div>
-        </div>
 
         <div class="screen4-body">
             <div class="overview-row">
             <div class="overview-panel">
                 <!-- <div class="panel-title">需求概览</div> -->
                 <div class="overview-main">
-                <div class="overview-metric">
-                    <div class="metric-number">565/1230</div>
-                    <div class="metric-label">立项项目数 / 储备项目总数</div>
-                </div>
-                <div class="overview-status">转化率 58%</div>
-                </div>
-                <div class="chart-panel">
-                  <div class="panel-title">Solar Module</div>
-                  <div class="metrics-row">
-                    <div class="metrics-info">
-                      <div class="metric-box">
-                        <span class="metric-label">Invited</span>
-                        <span class="metric-value">145 people</span>
-                      </div>
-                      <div class="metric-box">
-                        <span class="metric-label">Bonus</span>
-                        <span class="metric-value">1,465</span>
-                      </div>
-                    </div>
-                    <div class="safety-ring">
-                      <map-echart echarts-type="safetyRing" width="120px" height="130px" />
-                    </div>
+                  <div class="overview-metric">
+                      <div class="metric-number">565/1230</div>
+                      <div class="metric-label">立项项目数 / 储备项目总数</div>
                   </div>
                 </div>
+               
                 <div class="overview-cards">
                 <div class="overview-card">
                     <div class="card-value">1456</div>
@@ -74,40 +41,42 @@
                 
 
                 <div class="chart-panel">
-                    <target-gauge-card
-                      title="汽车芯片设计中心"
-                      main-value="328万"
-                      main-label="季度目标"
-                      :percentage="45"
-                      :targets="carTargets"
-                      color="#ffa726"
-                      width="100%"
-                      height="200px"
-                    />
-        
+                  <target-gauge-card
+                    title="汽车芯片设计中心"
+                    main-value="328万"
+                    main-label="季度目标"
+                    :percentage="45"
+                    :targets="carTargets"
+                    color="#ffa726"
+                    width="100%"
+                    height="200px"
+                  />
+                </div>
+
+                <div class="chart-panel">
+                  <div class="panel-title">Solar Module</div>
+                  <div class="metrics-row">
+                    <div class="metrics-info">
+                      <div class="metric-box">
+                        <span class="metric-label">Invited</span>
+                        <span class="metric-value">145 people</span>
+                      </div>
+                      <div class="metric-box">
+                        <span class="metric-label">Bonus</span>
+                        <span class="metric-value">1,465</span>
+                      </div>
+                    </div>
+                    <map-echart echarts-type="semiGauge" height="150px" />
                   </div>
                 </div>
-             </div>
+              </div>
+            </div>
 
             <div class="product-panel">
-                <funnel-card style="width: 60%; height: 100%;" title="建行生活签约" :stats="myStats" :layers="myLayers" />
+                <funnel-card style="width: 60%; height: 100%;" title="" :stats="myStats" :layers="myLayers" />
                
                 <div class="feature-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">AI</div>
-                    <div class="feature-meta">
-                    <div class="feature-number">5.4</div>
-                    <div class="feature-label">人工智能</div>
-                    </div>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">100</div>
-                    <div class="feature-meta">
-                    <div class="feature-number">安全类</div>
-                    <div class="feature-label">项目数量</div>
-                    </div>
-                </div>
-               <div class="chart-panel chart-panel--center">
+                <div class="chart-panel--center">
                     <wave-gauge-card
                       :percentage="52"
                       value="52%"
@@ -115,11 +84,27 @@
                       :size="140"
                     />
                 </div>
-               <div class="chart-panel chart-panel--center">
+                <div class="chart-panel--center">
                     <wave-gauge-card
                       :percentage="52"
                       value="52%"
                       label="完成度"
+                      :size="140"
+                    />
+                </div>
+                <div class="chart-panel--center">
+                    <wave-gauge-card
+                      :percentage="52"
+                      value="52%"
+                      label="完成度"
+                      :size="140"
+                    />
+                </div>
+                <div class="chart-panel--center">
+                    <wave-gauge-card
+                      :percentage="62"
+                      value="62%"
+                      label="满意度"
                       :size="140"
                     />
                 </div>
@@ -132,25 +117,18 @@
 
 
             <div class="chart-row">
-              
-              <div class="chart-panel ">
-                <progress-slider-card
-                  title="进度总览"
-                  class="progress-card"
-                />
-              </div>
                 
                 <div class="chart-panel ">
                     <div class="panel-title">年度趋势</div>
-                    <map-echart echarts-type="screenBar" height="80%" />
+                    <map-echart echarts-type="screenBar" height="100%" />
                 </div>
                 <div class="chart-panel ">
                     <div class="panel-title">研发投入</div>
-                    <map-echart echarts-type="screenArea" height="80%" />
+                    <map-echart echarts-type="screenArea"  height="100%" />
                 </div>
                 <div class="chart-panel ">
                     <div class="panel-title">数据分布</div>
-                    <map-echart echarts-type="screenHorizStackBar" height="80%" />
+                    <map-echart echarts-type="screenHorizStackBar" height="100%" />
                 </div>
             </div>
         </div>
@@ -210,25 +188,18 @@ export default {
   min-height: 0;
 
 }
-
-.screen4-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 20px;
-}
-
 .screen4-body {
   flex: 1 auto 1;
   height: 100%;
   display: flex;
   flex-direction: row;
   gap: 12px;
-  margin: 10px 0;
+  /* margin: 10px 0; */
   min-height: 0;
   position: relative;
   z-index: 1;
   overflow: hidden;
+  margin-bottom: 50px;
 }
 
 .brand {
@@ -298,8 +269,9 @@ export default {
 }
 
 .progress-card {
-  width: 280px;
+  width: 100%;
   flex-shrink: 0;
+  height: 20vh;
 }
 
 .overview-panel {
@@ -313,6 +285,8 @@ export default {
   align-items: center;
   justify-content: center;
   padding: 8px;
+  width: 10vw;
+  height: 10vh;
 }
 .chart-panel {
   flex: 1;
@@ -327,7 +301,7 @@ export default {
 } */
 .product-panel {
   flex: auto 1 1;
-  min-height: 0;
+  height: 60vh;
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -480,12 +454,12 @@ export default {
   flex-direction: column;
   gap: 10px;
   width: 20vw;
-  height: 100%;
 }
 
 
 .metrics-row {
   display: flex;
+  flex-direction: row;
   align-items: center;
   flex: 1;
   gap: 8px;

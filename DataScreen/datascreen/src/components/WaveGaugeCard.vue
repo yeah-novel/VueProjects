@@ -99,14 +99,18 @@
       <text
         :x="cx" :y="cy - 8"
         text-anchor="middle"
-        class="center-value"
+        :font-size="centerValueFontSize"
         fill="#fff"
+        font-weight="800"
+        class="center-value"
       >{{ displayValue }}</text>
       <text
         :x="cx" :y="cy + 18"
         text-anchor="middle"
-        class="center-label"
+        :font-size="centerLabelFontSize"
         :fill="labelColor"
+        font-weight="400"
+        class="center-label"
       >{{ label }}</text>
     </svg>
 
@@ -121,7 +125,7 @@
 export default {
   name: 'WaveGaugeCard',
   props: {
-    // 容器尺寸
+    // SVG viewBox 坐标系大小（不影响实际渲染尺寸，默认 200 用于内部计算）
     size: { type: Number, default: 200 },
     // 进度百分比
     percentage: { type: Number, default: 52 },
@@ -156,7 +160,8 @@ export default {
   },
   data() {
     return {
-      animated: false
+      animated: false,
+      cardPixelSize: 0 // 实际渲染像素尺寸，取父容器宽高较小值
     }
   },
   computed: {
@@ -169,8 +174,17 @@ export default {
     dashOffset() { return this.circumference * (1 - this.percentage / 100) },
     currentDashOffset() { return this.animated ? this.dashOffset : this.circumference },
     displayValue() { return this.value },
+    // 中心数值文字大小（相对于 viewBox 尺寸）
+    centerValueFontSize() { return Math.round(this.size * 0.14) },
+    // 中心标签文字大小（相对于 viewBox 尺寸）
+    centerLabelFontSize() { return Math.round(this.size * 0.055) },
     containerStyle() {
-      return { width: this.size + 'px', height: this.size + 'px', ...this.cardStyle }
+      if (this.cardPixelSize > 0) {
+        const px = this.cardPixelSize + 'px'
+        return { width: px, height: px, ...this.cardStyle }
+      }
+      // 首次渲染前使用 viewport 相对单位占位，ResizeObserver 就绪后精确计算
+      return { width: '100%', aspectRatio: '1 / 1', ...this.cardStyle }
     },
     // 旋钮位置（按进度角度）
     knobAngle() {
@@ -243,25 +257,49 @@ export default {
       // 回到右下角闭合
       d += ` L ${right} ${bottom} Z`
       return d
+    },
+    initResizeObserver() {
+      const parent = this.$el.parentElement
+      if (!parent) return
+
+      const updateSize = () => {
+        const rect = parent.getBoundingClientRect()
+        this.cardPixelSize = Math.min(rect.width, rect.height)
+      }
+
+      this._resizeObserver = new ResizeObserver(updateSize)
+      this._resizeObserver.observe(parent)
+
+      // 初始计算
+      updateSize()
     }
   },
   mounted() {
-    // 修复 transform rotate 引用
-    // 延迟触发动画
+    this.$nextTick(() => {
+      this.initResizeObserver()
+    })
+    // 延迟触发入口动画
     setTimeout(() => {
       this.animated = true
     }, this.animDelay)
-  }
+  },
+  beforeDestroy() {
+    if (this._resizeObserver) {
+      this._resizeObserver.disconnect()
+      this._resizeObserver = null
+    }
+  },
 }
 </script>
 
 <style scoped>
 .wave-gauge-card {
-  display: inline-flex;
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   position: relative;
+  flex-shrink: 0;
   opacity: 0;
   transform: scale(0.85);
   transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -324,8 +362,6 @@ export default {
 
 /* 中心文字 */
 .center-value {
-  font-size: 28px;
-  font-weight: 800;
   dominant-baseline: central;
   opacity: 0;
   transform: translateY(6px);
@@ -337,8 +373,6 @@ export default {
 }
 
 .center-label {
-  font-size: 11px;
-  font-weight: 400;
   dominant-baseline: central;
   opacity: 0;
   transition: opacity 0.5s ease 0.7s;

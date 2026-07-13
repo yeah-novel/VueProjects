@@ -129,12 +129,9 @@ export default {
 .progress-slider-card {
   width: 100%;
   box-sizing: border-box;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 18px;
   padding: 20px;
   backdrop-filter: blur(10px);
-  box-shadow: inset 0 0 40px rgba(19, 83, 179, 0.18);
   font-family: 'PingFang SC', 'Helvetica Neue', sans-serif;
   opacity: 0;
   transform: translateY(16px);
@@ -189,7 +186,7 @@ export default {
 .slider-list {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  /* gap: 16px; */
 }
 
 /* ===== 每一行 ===== */

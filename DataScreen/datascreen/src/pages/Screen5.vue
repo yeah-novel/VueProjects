@@ -1,14 +1,5 @@
 <template>
   <div class="s5-page">
-    <!-- ===== 顶部栏 ===== -->
-    <div class="s5-topbar">
-    
-      <div class="s5-top-center">
-        <div class="s5-top-title">某某市某某厅办税渠道运行状态监控平台</div>
-        <div class="s5-top-subtitle">Tax Service Channel Monitoring Platform</div>
-      </div>
-
-    </div>
 
     <!-- ===== 主体区域 ===== -->
     <div class="s5-body">
@@ -137,19 +128,6 @@
         <div class="s5-card s5-card-watchlist">
           <watchlist-card />
         </div>
-      </div>
-    </div>
-
-    <!-- ===== 底部栏 ===== -->
-    <div class="s5-footer">
-      <div class="s5-footer-left">
-        <span class="s5-footer-date">{{ footerDate }}</span>
-      </div>
-      <div class="s5-footer-center">
-        版权所有：某某软件集团有限公司
-      </div>
-      <div class="s5-footer-right">
-        <button class="s5-btn-back">返回</button>
       </div>
     </div>
   </div>

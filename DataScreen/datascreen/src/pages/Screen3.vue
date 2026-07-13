@@ -1,20 +1,5 @@
 ﻿<template>
   <div class="screen3-page">
-    <div class="screen3-topbar">
-      <div class="top-left">
-        <button class="top-button">切换大屏</button>
-      </div>
-      <div class="top-title-group">
-        <div class="top-title">
-          <span class="title-shimmer">大脑学习力数据中心</span>
-        </div>
-        <div class="top-subtitle">学习力实时监控与教学质量分析</div>
-      </div>
-      <div class="top-right">
-        <div class="top-time">{{ currentTime }}</div>
-        <div class="top-date">{{ currentDate }}</div>
-      </div>
-    </div>
 
     <div class="screen3-body">
       <div class="panel left-panel panel-enter" style="--d: 0.1s">
@@ -56,11 +41,10 @@
             </div>
           </div>
         </div>
-
-        <!-- 排名 -->
-        <div class="chart-box country-rank-box chart-fade-in" style="--d: 1.1s">
-          <country-rank />
+        <div class="panel-section class-overview">
+          <map-echart echarts-type="screenRadar" height="20vh" width="100%"/>
         </div>
+
       </div>
 
       <div class="panel center-panel panel-enter" style="--d: 0.25s">
@@ -75,35 +59,44 @@
         </div>
         <div class="radar-card">
           <div class="small-chart chart-fade-in" style="--d: 0.6s">
-            <map-echart echarts-type="screenRadar" height="440px" width="440px"/>
+            <bubble-chart />
           </div>
           <div class="small-chart chart-fade-in" style="--d: 0.8s">
             <div class="small-chart-title">注意力等级人数分布</div>
-            <map-echart echarts-type="screenPie3D" height="240px" width="440px" />
+            <contribution-heatmap />
           </div>
         </div>
-        <div class="center-bottom-charts">
-          <div class="small-chart chart-fade-in" style="--d: 1.0s">
+        <div class="center-bottom-charts chart-fade-in" style="--d: 1.2s">
+            <!-- <wind-speed-chart /> -->
+            <map-echart echarts-type="screenLine" height="100%" />
+          <!-- <div class="small-chart chart-fade-in" style="--d: 1.0s">
             <div class="small-chart-title">注意力指数密度曲线</div>
             <map-echart echarts-type="screenArea" height="140px" width="100%" />
-          </div>
-          <div class="small-chart chart-fade-in" style="--d: 1.1s">
+          </div> -->
+          <!-- <div class="small-chart chart-fade-in" style="--d: 1.1s">
             <primary-stats-card />
-          </div>
+          </div> -->
         </div>
       </div>
 
       <div class="panel right-panel panel-enter" style="--d: 0.4s">
-        <div class="section-title">能力评价分析</div>
+
+        <!-- <div class="section-title">能力评价分析</div> -->
+        <!-- 排名 -->
+          <div class="small-chart chart-fade-in" height="18vh" style="--d: 1.2s">
+            <country-rank />
+          </div>
           <div class="small-chart chart-fade-in" style="--d: 1.2s">
-            <wind-speed-chart />
+            <primary-stats-card />
+
           </div>
         <div class="section-title small-section-title">指数整合分析</div>
           <div class="small-chart ch-heatmap-box chart-fade-in" style="--d: 1.1s">
-            <contribution-heatmap />
+            <map-echart echarts-type="screenPie3D" height="240px" width="100%" />
           </div>
       </div>
     </div>
+    
   </div>
 </template>
 
@@ -113,10 +106,11 @@ import CountryRank from '../components/CountryRank.vue'
 import ContributionHeatmap from '../components/ContributionHeatmap.vue'
 import WindSpeedChart from '../components/WindSpeedChart.vue'
 import PrimaryStatsCard from '../components/PrimaryStatsCard.vue'
+import BubbleChart from '../components/BubbleChart.vue'
 
 export default {
   name: 'Screen3',
-  components: { mapEchart, CountryRank, ContributionHeatmap, WindSpeedChart, PrimaryStatsCard },
+  components: { mapEchart, CountryRank, ContributionHeatmap, WindSpeedChart, PrimaryStatsCard, BubbleChart },
   data () {
     return {
       currentTime: '',
@@ -229,7 +223,7 @@ export default {
 
 <style scoped>
 .screen3-page {
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   background: radial-gradient(circle at top, rgba(14, 43, 97, 0.94), rgba(3, 10, 26, 1));
   color: #fff;
@@ -240,65 +234,7 @@ export default {
   display: flex;
   flex-direction: column;
   min-height: 0;
-}
 
-.screen3-topbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  padding-bottom: 8px;
-  margin-bottom: 8px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.top-button {
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  background: rgba(255, 255, 255, 0.06);
-  color: #fff;
-  padding: 8px 14px;
-  border-radius: 14px;
-  cursor: pointer;
-  font-size: 12px;
-}
-
-.top-left,
-.top-right,
-.top-title-group {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.top-left {
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.top-title-group {
-  flex: 1;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.top-title {
-  font-size: 22px;
-  font-weight: 700;
-}
-
-.top-subtitle {
-  color: rgba(255, 255, 255, 0.72);
-  font-size: 12px;
-}
-
-.top-time {
-  font-size: 16px;
-  font-weight: 700;
-}
-
-.top-date {
-  color: rgba(255, 255, 255, 0.72);
-  font-size: 12px;
 }
 
 .screen3-page::before {
@@ -328,11 +264,12 @@ export default {
   display: flex;
   flex-direction: row;
   gap: 12px;
-  margin: 10px 0;
+  /* margin: 10px 0; */
   min-height: 0;
   position: relative;
   z-index: 1;
   overflow: hidden;
+  margin-bottom: 50px;
 }
 
 .panel {
@@ -359,7 +296,7 @@ export default {
 }
 
 .right-panel {
-  width: 340px;
+  width: 20vw;
 }
 
 .center-panel {
@@ -753,8 +690,8 @@ export default {
 }
 
 .center-bottom-charts {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  flex: 1;
+  display: flex;
   gap: 8px;
 }
 
@@ -768,12 +705,12 @@ export default {
 
 .small-chart,
 .chart-box {
-  flex: 1;
+  /* flex: 1; */
   background: rgba(15, 40, 88, 0.96);
   border: 1px solid rgba(88, 168, 255, 0.16);
   border-radius: 16px;
   padding: 10px;
-  min-height: 100px;
+  /* min-height: 100px; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -948,6 +885,11 @@ export default {
   margin-top: 10px;
 }
 
+.s5-doughnut-box {
+  flex: 1;
+  min-height: 120px;
+}
+
 /* ============================================================
    动画效果
    ============================================================ */
@@ -991,6 +933,7 @@ export default {
   animation: fadeInUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
   animation-delay: var(--d, 0s);
 }
+
 
 /* -------- 5. 班级列表交错入场 -------- */
 @keyframes classItemEnter {
